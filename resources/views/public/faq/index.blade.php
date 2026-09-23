@@ -14,8 +14,8 @@
 @push('styles')
 <style>
     :root{
-        --brand-blue:#003682;
-        --brand-blue-soft:#0b63a8;
+        --brand-blue:#1E5FA8;
+        --brand-blue-soft:#2575C0;
         --brand-green:#5bab23;
         --ink:#111827;
         --muted:#6b7280;
@@ -80,7 +80,7 @@
         top: 6px;
         bottom: 6px;
         width: 2px;
-        background: linear-gradient(to bottom, rgba(0,54,130,.18), rgba(91,171,35,.18));
+        background: linear-gradient(to bottom, rgba(30,95,168,.18), rgba(91,171,35,.18));
         border-radius: 999px;
     }
 
@@ -113,7 +113,7 @@
         align-items:center;
         justify-content:center;
         font-weight:800;
-        box-shadow: 0 14px 30px rgba(0,54,130,.25);
+        box-shadow: 0 14px 30px rgba(30,95,168,.25);
         font-size:.85rem;
     }
 
@@ -159,7 +159,7 @@
             radial-gradient(circle at top left, rgba(255,255,255,.18) 0, transparent 55%),
             linear-gradient(135deg, var(--brand-blue), var(--brand-blue-soft), var(--brand-green));
         color:#fff;
-        box-shadow: 0 22px 55px rgba(0,54,130,.35);
+        box-shadow: 0 22px 55px rgba(30,95,168,.30);
         position: sticky;
         top: 90px;
     }

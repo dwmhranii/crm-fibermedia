@@ -54,7 +54,7 @@
 
 .reco-title {
     font-weight: 800;
-    color: #003682;
+    color: #1E5FA8;
 }
 
 .reco-lead {
@@ -63,12 +63,12 @@
 }
 
 .btn-brand {
-    background: linear-gradient(135deg, #003682, #5bab23);
+    background: linear-gradient(135deg, #1E5FA8, #5bab23);
     color: #fff;
     border: none;
     font-weight: 600;
     border-radius: 999px;
-    box-shadow: 0 10px 25px rgba(0, 54, 130, .35);
+    box-shadow: 0 10px 25px rgba(30, 95, 168, .35);
 }
 
 .btn-brand:hover {
@@ -77,7 +77,7 @@
 }
 
 .text-brand {
-    color: #003682;
+    color: #1E5FA8;
 }
 
 
@@ -229,8 +229,8 @@
 
     background:linear-gradient(
         90deg,
-        #003682,
-        #0b63a8,
+        #1E5FA8,
+        #2575C0,
         #5bab23
     );
 }
@@ -243,14 +243,14 @@
     color:#ffffff;
     border:none;
 
-    box-shadow:0 26px 60px rgba(0,54,130,.45);
+    box-shadow:0 26px 60px rgba(30,95,168,.35);
 
     background-image:
         radial-gradient(circle at top left, rgba(255,255,255,.22) 0, transparent 55%),
         linear-gradient(
             135deg,
-            #003682 0%,
-            #0b63a8 35%,
+            #1E5FA8 0%,
+            #2575C0 35%,
             #0f9150 75%,
             #5bab23 100%
         );
@@ -264,8 +264,8 @@
             135deg,
             #5bab23 0%,
             #0f9150 35%,
-            #0b63a8 75%,
-            #003682 100%
+            #2575C0 75%,
+            #1E5FA8 100%
         );
 }
 
@@ -487,11 +487,10 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="reco-wrapper shadow-sm rounded-4 p-4 p-md-5 mb-4">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-4">
-                    <p class="reco-kicker mb-1">REKOMENDASI PAKET</p>
-                    <h2 class="reco-title mb-2">Bingung pilih paket?</h2>
+                    <p class="reco-kicker mb-1">KONSULTASI &amp; REKOMENDASI</p>
+                    <h2 class="reco-title mb-2">Cari Internet Seperti Apa untuk Kebutuhanmu?</h2>
                     <p class="reco-lead mb-0">
-                        Jawab beberapa pertanyaan singkat, dan kami akan merekomendasikan paket
-                        FibermediaPlay yang paling sesuai dengan kebutuhanmu.
+                        Yuk, konsultasikan bersama kami! Pilih aktivitas online dan jumlah pengguna di rumahmu untuk mendapatkan paket internet yang paling pas, cepat, dan hemat.
                     </p>
                 </div>
 

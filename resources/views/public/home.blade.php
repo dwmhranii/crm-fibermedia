@@ -54,14 +54,14 @@
         margin: 0 auto 14px auto;
         color: #ffffff;
         font-size: 2rem;
-        box-shadow: 0 12px 25px rgba(0, 54, 130, 0.35);
+        box-shadow: 0 12px 25px rgba(30, 95, 168, 0.30);
     }
 
     .service-icon-1 {
-        background: linear-gradient(135deg, #003682, #0b63a8);
+        background: linear-gradient(135deg, #1E5FA8, #2575C0);
     }
     .service-icon-2 {
-        background: linear-gradient(135deg, #0b63a8, #5bab23);
+        background: linear-gradient(135deg, #2575C0, #5bab23);
     }
     .service-icon-3 {
         background: linear-gradient(135deg, #0095b3, #5bab23);
@@ -84,7 +84,7 @@
     .dedicated-title {
         font-weight: 700;
         font-size: 2rem;
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .dedicated-body p {
@@ -95,13 +95,13 @@
     }
 
     .btn-gradient-primary {
-        background: linear-gradient(135deg, #003682, #5bab23);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
         border: none;
         color: #ffffff;
         font-weight: 700;
         padding-inline: 2.4rem;
         border-radius: 999px;
-        box-shadow: 0 12px 30px rgba(0,54,130,0.35);
+        box-shadow: 0 12px 30px rgba(30,95,168,0.30);
     }
 
     .btn-gradient-primary:hover {
@@ -113,11 +113,11 @@
     .dedicated-link {
         font-weight: 500;
         text-decoration: underline;
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .dedicated-link:hover {
-        color: #0b63a8;
+        color: #2575C0;
     }
 
     .feature-small {
@@ -141,10 +141,10 @@
         background: linear-gradient(135deg, #22c55e, #5bab23);
     }
     .feature-small-icon.icon-2 {
-        background: linear-gradient(135deg, #003682, #0b63a8);
+        background: linear-gradient(135deg, #1E5FA8, #2575C0);
     }
     .feature-small-icon.icon-3 {
-        background: linear-gradient(135deg, #0b63a8, #5bab23);
+        background: linear-gradient(135deg, #2575C0, #5bab23);
     }
     .feature-small-icon.icon-4 {
         background: linear-gradient(135deg, #0095b3, #5bab23);
@@ -192,9 +192,28 @@
         box-shadow: 0 16px 40px rgba(0,0,0,0.9);
     }
 
-    /* ===================== CATEGORY STRIP ===================== */
+    /* ===================== ICON CARDS (CATEGORY STRIP) ===================== */
     .category-strip {
-        padding: 24px 0 10px;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    @media (min-width: 576px) {
+        .category-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 992px) {
+        .category-grid {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
     }
 
     .category-item {
@@ -206,38 +225,47 @@
     }
 
     .category-item:hover {
-        background: #e5f2ff;
+        background: #f1f5f9;
         transform: translateY(-3px);
-        box-shadow: 0 12px 25px rgba(0,54,130,0.22);
+        box-shadow: 0 12px 25px rgba(15,23,42,0.10);
     }
 
     .category-icon {
         width: 56px;
         height: 56px;
         border-radius: 18px;
-        margin: 0 auto 6px auto;
+        margin: 0 auto 8px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #ffffff;
-        background: linear-gradient(135deg, #003682, #5bab23);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
         font-size: 1.7rem;
-        box-shadow: 0 10px 20px rgba(0, 54, 130, 0.25);
+        box-shadow: 0 10px 20px rgba(30, 95, 168, 0.25);
     }
 
-    .category-label {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #374151;
+    .category-label,
+    .category-item .category-label,
+    a.text-decoration-none .category-label {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #111827 !important;
+        transition: color .18s ease;
+    }
+
+    .category-item:hover .category-label {
+        color: #000000 !important;
     }
 
     body.dark-mode .category-item:hover {
-        background: #020617;
+        background: #1e293b;
         box-shadow: 0 15px 35px rgba(0,0,0,0.8);
     }
 
-    body.dark-mode .category-label {
-        color: #e5e7eb;
+    body.dark-mode .category-label,
+    body.dark-mode .category-item .category-label,
+    body.dark-mode a.text-decoration-none .category-label {
+        color: #f8fafc !important;
     }
 
     /* ===================== BANNER CARA BERLANGGANAN ===================== */
@@ -249,8 +277,8 @@
                 rgba(255,255,255,0.22) 0,
                 transparent 55%),
             linear-gradient(135deg,
-                #003682 0%,
-                #0b63a8 35%,
+                #1E5FA8 0%,
+                #2575C0 35%,
                 #0f9150 75%,
                 #5bab23 100%);
         color: #ffffff;
@@ -327,7 +355,7 @@
 
     .fm-step-btn {
         background: #ffffff;
-        color: #003682;
+        color: #1E5FA8;
         border-radius: 999px;
         font-size: .85rem;
         font-weight: 600;
@@ -337,7 +365,7 @@
 
     .fm-step-btn:hover {
         background: #e5f0ff;
-        color: #002956;
+        color: #16467d;
     }
 
     body.dark-mode .fm-steps-banner {
@@ -397,13 +425,13 @@
     .pricing-link-all {
         font-size: .9rem;
         font-weight: 600;
-        color: #003682;
+        color: #1E5FA8;
         text-decoration: none;
         border-bottom: 1px solid transparent;
     }
 
     .pricing-link-all:hover {
-        border-bottom-color: #003682;
+        border-bottom-color: #1E5FA8;
     }
 
     .pricing-cards-wrapper {
@@ -443,7 +471,7 @@
         width: 180px;
         height: 180px;
         border-radius: 999px;
-        background: radial-gradient(circle, rgba(11,99,168,0.10), transparent 65%);
+        background: radial-gradient(circle, rgba(30,95,168,0.10), transparent 65%);
         pointer-events: none;
     }
 
@@ -451,8 +479,8 @@
         transform: translateY(-8px);
         box-shadow:
             0 28px 60px rgba(15, 23, 42, 0.16),
-            0 10px 30px rgba(0,54,130,0.08);
-        border-color: rgba(11,99,168,0.16);
+            0 10px 30px rgba(30,95,168,0.08);
+        border-color: rgba(30,95,168,0.16);
     }
 
     .pricing-card::before {
@@ -461,22 +489,22 @@
         inset: 0 0 auto 0;
         height: 6px;
         border-radius: 28px 28px 0 0;
-        background: linear-gradient(90deg, #003682, #0b63a8, #5bab23);
+        background: linear-gradient(90deg, #1E5FA8, #2575C0, #5bab23);
     }
 
     .pricing-card-best {
         color: #ffffff;
         border: none;
         box-shadow:
-            0 28px 65px rgba(0,54,130,0.28),
+            0 28px 65px rgba(30,95,168,0.28),
             inset 0 1px 0 rgba(255,255,255,0.18);
         background-image:
             radial-gradient(circle at top left, rgba(255,255,255,0.24) 0, transparent 55%),
             radial-gradient(circle at bottom right, rgba(255,255,255,0.10) 0, transparent 42%),
             linear-gradient(
                 135deg,
-                #003682 0%,
-                #0b63a8 35%,
+                #1E5FA8 0%,
+                #2575C0 35%,
                 #0f9150 75%,
                 #5bab23 100%
             );
@@ -485,8 +513,8 @@
     .pricing-card-best:hover {
         transform: translateY(-10px);
         box-shadow:
-            0 34px 70px rgba(0,54,130,0.36),
-            0 12px 34px rgba(11,99,168,0.18);
+            0 34px 70px rgba(30,95,168,0.36),
+            0 12px 34px rgba(37,117,192,0.18);
     }
 
     .pricing-card-best-alt {
@@ -497,8 +525,8 @@
                 135deg,
                 #5bab23 0%,
                 #0f9150 35%,
-                #0b63a8 75%,
-                #003682 100%
+                #2575C0 75%,
+                #1E5FA8 100%
             );
     }
 
@@ -667,14 +695,14 @@
         gap: 8px;
         padding: 8px 14px;
         border-radius: 999px;
-        background: linear-gradient(135deg, rgba(0,54,130,.08), rgba(91,171,35,.10));
-        color: #003682;
+        background: linear-gradient(135deg, rgba(30,95,168,.08), rgba(91,171,35,.10));
+        color: #1E5FA8;
         font-size: .78rem;
         font-weight: 800;
         letter-spacing: .08em;
         text-transform: uppercase;
         margin-bottom: 1rem;
-        border: 1px solid rgba(0,54,130,.08);
+        border: 1px solid rgba(30,95,168,.08);
     }
 
     .why-section-title {
@@ -687,7 +715,7 @@
     }
 
     .why-highlight {
-        background: linear-gradient(135deg, #003682, #0b63a8, #5bab23);
+        background: linear-gradient(135deg, #1E5FA8, #2575C0, #5bab23);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -746,7 +774,7 @@
     .why-card-primary {
         background:
             linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
-            linear-gradient(135deg, #003682 0%, #0b63a8 42%, #0f9150 76%, #5bab23 100%);
+            linear-gradient(135deg, #1E5FA8 0%, #2575C0 42%, #0f9150 76%, #5bab23 100%);
         color: #ffffff;
     }
 
@@ -796,9 +824,9 @@
     }
 
     .why-card-secondary .why-badge-icon {
-        background: linear-gradient(135deg, #003682, #5bab23);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
         color: #ffffff;
-        box-shadow: 0 14px 26px rgba(0,54,130,.18);
+        box-shadow: 0 14px 26px rgba(30,95,168,.18);
     }
 
     .why-card-line {
@@ -814,7 +842,7 @@
     }
 
     .why-card-secondary .why-card-line {
-        background: linear-gradient(90deg, rgba(0,54,130,.14), rgba(91,171,35,.18));
+        background: linear-gradient(90deg, rgba(30,95,168,.14), rgba(91,171,35,.18));
     }
 
     /* CONTENT */
@@ -872,9 +900,9 @@
     }
 
     .why-card-secondary .why-chip {
-        background: rgba(0,54,130,.07);
-        color: #003682;
-        border: 1px solid rgba(0,54,130,.10);
+        background: rgba(30,95,168,.07);
+        color: #1E5FA8;
+        border: 1px solid rgba(30,95,168,.10);
     }
 
     .why-card-primary .why-card-title,
@@ -887,7 +915,7 @@
     }
 
     .why-card-secondary .why-card-title {
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .why-card-secondary .why-card-subtitle,
@@ -979,7 +1007,7 @@
 
     .reco-title {
         font-weight: 800;
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .reco-lead {
@@ -988,12 +1016,12 @@
     }
 
     .btn-brand {
-        background: linear-gradient(135deg, #003682, #5bab23);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
         color: #fff;
         border: none;
         font-weight: 600;
         border-radius: 999px;
-        box-shadow: 0 10px 25px rgba(0, 54, 130, .35);
+        box-shadow: 0 10px 25px rgba(30, 95, 168, .30);
     }
 
     .btn-brand:hover {
@@ -1002,7 +1030,7 @@
     }
 
     .text-brand {
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .reco-result-card {
@@ -1050,15 +1078,15 @@
         align-items: center;
         justify-content: center;
         color: #fff;
-        background: linear-gradient(135deg, #003682, #5bab23);
-        box-shadow: 0 12px 30px rgba(0,54,130,.30);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
+        box-shadow: 0 12px 30px rgba(30,95,168,.30);
         flex-shrink: 0;
         margin-left: 2px;
     }
 
     .reco-toast-title {
         font-weight: 800;
-        color: #003682;
+        color: #1E5FA8;
         margin-bottom: 2px;
         font-size: 1rem;
     }
@@ -1080,8 +1108,8 @@
         border: none;
         font-weight: 700;
         color: #fff !important;
-        background: linear-gradient(135deg, #003682, #5bab23);
-        box-shadow: 0 14px 35px rgba(0,54,130,.25);
+        background: linear-gradient(135deg, #1E5FA8, #5bab23);
+        box-shadow: 0 14px 35px rgba(30,95,168,.25);
         padding: .45rem .85rem;
     }
 
@@ -1093,9 +1121,9 @@
         border-radius: 999px;
         font-weight: 700;
         padding: .45rem .85rem;
-        border: 1px solid rgba(0,54,130,.25);
+        border: 1px solid rgba(30,95,168,.25);
         background: rgba(255,255,255,.7);
-        color: #003682;
+        color: #1E5FA8;
     }
 
     .reco-toast-close {
@@ -1497,13 +1525,13 @@
                 font-weight: 800;
                 font-size: 2.5rem;
                 line-height: 1.15;
-                color: #003682;
+                color: #1E5FA8;
                 margin-bottom: 1rem;
                 letter-spacing: -0.02em;
             }
 
             .dedicated-title span {
-                background: linear-gradient(135deg, #003682, #0b63a8, #5bab23);
+                background: linear-gradient(135deg, #1E5FA8, #2575C0, #5bab23);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
@@ -1526,13 +1554,13 @@
             }
 
             .btn-gradient-primary {
-                background: linear-gradient(135deg, #003682, #5bab23);
+                background: linear-gradient(135deg, #1E5FA8, #5bab23);
                 border: none;
                 color: #ffffff;
                 font-weight: 800;
                 padding: 14px 28px;
                 border-radius: 999px;
-                box-shadow: 0 12px 28px rgba(0,54,130,0.20);
+                box-shadow: 0 12px 28px rgba(30,95,168,0.20);
                 transition: all .25s ease;
             }
 
@@ -1540,19 +1568,19 @@
                 filter: brightness(0.97);
                 color: #ffffff;
                 transform: translateY(-2px);
-                box-shadow: 0 18px 34px rgba(0,54,130,0.26);
+                box-shadow: 0 18px 34px rgba(30,95,168,0.26);
             }
 
             .dedicated-link {
                 font-weight: 700;
                 text-decoration: underline;
                 text-underline-offset: 3px;
-                color: #0057b8;
+                color: #1E5FA8;
                 transition: .2s ease;
             }
 
             .dedicated-link:hover {
-                color: #003682;
+                color: #2575C0;
             }
 
             .feature-small {
@@ -1585,11 +1613,11 @@
             }
 
             .feature-small-icon.icon-2 {
-                background: linear-gradient(135deg, #003682, #0b63a8);
+                background: linear-gradient(135deg, #1E5FA8, #2575C0);
             }
 
             .feature-small-icon.icon-3 {
-                background: linear-gradient(135deg, #0b63a8, #16a34a);
+                background: linear-gradient(135deg, #2575C0, #16a34a);
             }
 
             .feature-small-icon.icon-4 {
@@ -1641,6 +1669,42 @@
                 .feature-small-text {
                     font-size: .92rem;
                 }
+            }
+
+            /* DARK MODE OVERRIDES */
+            body.dark-mode .dedicated-title {
+                color: #ffffff;
+            }
+
+            body.dark-mode .dedicated-title span {
+                background: linear-gradient(135deg, #38bdf8, #4ade80);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            body.dark-mode .dedicated-body p {
+                color: #cbd5e1;
+            }
+
+            body.dark-mode .dedicated-body strong {
+                color: #f8fafc;
+            }
+
+            body.dark-mode .dedicated-link {
+                color: #38bdf8;
+            }
+
+            body.dark-mode .dedicated-link:hover {
+                color: #7dd3fc;
+            }
+
+            body.dark-mode .feature-small-title {
+                color: #f8fafc;
+            }
+
+            body.dark-mode .feature-small-text {
+                color: #94a3b8;
             }
         </style>
 
@@ -1749,7 +1813,7 @@
                 </div>
 
                 <p class="pricing-lead mb-4">
-                    Semua paket sudah menggunakan jaringan full fiber optic...
+                    Semua paket sudah menggunakan jaringan 100% full fiber optic tanpa batas kuota (unlimited) dengan kecepatan simetris dan stabil.
                 </p>
 
                 <a href="{{ route('public.packages') }}"
@@ -1845,32 +1909,37 @@
     </div>
 </section>
 
+{{-- REKOMENDASI PAKET (BINGUNG PILIH PAKET) --}}
+@include('partials.rekomendasi-paket', [
+    'recommendedPackages' => $recommendedPackages ?? collect(),
+])
+
 {{-- Cara berlangganan --}}
 <section class="my-5">
     <div class="container">
         <div class="fm-steps-banner p-4 p-md-5 shadow-lg">
             <div class="text-center mb-4">
                 <h2 class="fm-steps-title mb-2">Cara Berlangganan Internet FibermediaPlay</h2>
-                <p class="fm-steps-subtitle mb-0">Tiga langkah mudah...</p>
+                <p class="fm-steps-subtitle mb-0">Tiga langkah mudah menikmati koneksi internet super cepat dan stabil di rumah Anda</p>
             </div>
 
             <div class="row text-center g-4">
                 <div class="col-md-4 fm-step-item">
                     <div class="fm-step-badge mb-2"><i class="bi bi-person-plus-fill"></i></div>
                     <div class="fm-step-title">1. Registrasi</div>
-                    <p class="fm-step-text mb-3">Cek ketersediaan jaringan...</p>
+                    <p class="fm-step-text mb-0">Pilih paket favorit Anda dan isi formulir pendaftaran secara online atau via WhatsApp Sales.</p>
                 </div>
 
                 <div class="col-md-4 fm-step-item">
                     <div class="fm-step-badge mb-2"><i class="bi bi-tools"></i></div>
                     <div class="fm-step-title">2. Instalasi</div>
-                    <p class="fm-step-text mb-3">Tim teknisi kami datang...</p>
+                    <p class="fm-step-text mb-0">Tim teknisi profesional kami segera datang ke lokasi untuk penarikan kabel fiber optic dan setting modem.</p>
                 </div>
 
                 <div class="col-md-4 fm-step-item">
                     <div class="fm-step-badge mb-2"><i class="bi bi-credit-card-2-front-fill"></i></div>
                     <div class="fm-step-title">3. Aktivasi &amp; Bayar</div>
-                    <p class="fm-step-text mb-3">Setelah aktif, lakukan pembayaran...</p>
+                    <p class="fm-step-text mb-0">Setelah jaringan aktif dan teruji stabil, lakukan pembayaran tagihan pertama dan nikmati internetnya.</p>
                 </div>
             </div>
 
@@ -1959,9 +2028,5 @@
         </div>
     </div>
 </section>
-
-@include('partials.rekomendasi-paket', [
-    'recommendedPackages' => $recommendedPackages ?? collect(),
-])
 
 @endsection

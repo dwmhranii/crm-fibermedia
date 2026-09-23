@@ -51,7 +51,7 @@
         .fiber-title {
             font-weight: 800;
             font-size: 2rem;
-            color: #003682;
+            color: #1E5FA8;
             margin-bottom: 4px;
         }
 
@@ -82,7 +82,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.3rem;
-            color: #003682;
+            color: #1E5FA8;
             z-index: 2;
         }
 
@@ -143,9 +143,9 @@
             position: absolute;
             inset: 0;
             border-radius: 999px;
-            background: linear-gradient(135deg, #003682, #5bab23);
+            background: linear-gradient(135deg, #1E5FA8, #5bab23);
             border: 3px solid #ffffff;
-            box-shadow: 0 0 0 3px rgba(0,54,130,.18);
+            box-shadow: 0 0 0 3px rgba(30,95,168,.18);
             z-index: 3;
         }
 
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     radius: 6,
                     color: '#ffffff',
                     weight: 2,
-                    fillColor: '#003682',
+                    fillColor: '#1E5FA8',
                     fillOpacity: 1
                 });
             }
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     radius: 6,
                     color: '#ffffff',
                     weight: 2,
-                    fillColor: '#003682',
+                    fillColor: '#1E5FA8',
                     fillOpacity: 1
                 }).bindPopup(
                     '<strong>' + escapeHtml(area.name || '-') + '</strong><br>' +

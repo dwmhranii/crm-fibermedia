@@ -100,10 +100,18 @@ class PackageOrderController extends Controller
             ->findOrFail($packageId);
 
         $formData = [
-            'customer_name'    => data_get($session, 'customer_name', ''),
-            'customer_phone'   => data_get($session, 'customer_phone', ''),
-            'customer_address' => data_get($session, 'customer_address', ''),
-            'customer_note'    => data_get($session, 'customer_note', ''),
+            'customer_name'     => data_get($session, 'customer_name', ''),
+            'customer_phone'    => data_get($session, 'customer_phone', ''),
+            'customer_city'     => data_get($session, 'customer_city', 'Kota Malang'),
+            'customer_district' => data_get($session, 'customer_district', ''),
+            'customer_village'  => data_get($session, 'customer_village', ''),
+            'customer_rt'       => data_get($session, 'customer_rt', ''),
+            'customer_rw'       => data_get($session, 'customer_rw', ''),
+            'customer_street'   => data_get($session, 'customer_street', ''),
+            'customer_address'  => data_get($session, 'customer_address', ''),
+            'customer_lat'      => data_get($session, 'customer_lat', ''),
+            'customer_lng'      => data_get($session, 'customer_lng', ''),
+            'customer_note'     => data_get($session, 'customer_note', ''),
         ];
 
         return view('public.packages.order.step2', compact('package', 'formData'));
@@ -119,11 +127,22 @@ class PackageOrderController extends Controller
         }
 
         $data = $request->validate([
-            'customer_name'    => ['required', 'string', 'max:100'],
-            'customer_phone'   => ['required', 'string', 'max:30'],
-            'customer_address' => ['required', 'string', 'max:500'],
-            'customer_note'    => ['nullable', 'string', 'max:500'],
+            'customer_name'     => ['required', 'string', 'max:100'],
+            'customer_phone'    => ['required', 'string', 'max:30'],
+            'customer_city'     => ['required', 'string', 'max:100'],
+            'customer_district' => ['required', 'string', 'max:100'],
+            'customer_village'  => ['required', 'string', 'max:100'],
+            'customer_rt'       => ['required', 'string', 'max:10'],
+            'customer_rw'       => ['required', 'string', 'max:10'],
+            'customer_street'   => ['required', 'string', 'max:300'],
+            'customer_lat'      => ['nullable', 'numeric'],
+            'customer_lng'      => ['nullable', 'numeric'],
+            'customer_note'     => ['nullable', 'string', 'max:500'],
         ]);
+
+        // Auto construct formatted full address
+        $fullAddress = trim("{$data['customer_street']}, RT {$data['customer_rt']} / RW {$data['customer_rw']}, {$data['customer_village']}, Kec. {$data['customer_district']}, {$data['customer_city']}");
+        $data['customer_address'] = $fullAddress;
 
         $session = array_merge($session, $data);
         Session::put(self::SESSION_KEY, $session);
@@ -145,10 +164,18 @@ class PackageOrderController extends Controller
             ->findOrFail($packageId);
 
         $formData = [
-            'customer_name'    => data_get($session, 'customer_name', ''),
-            'customer_phone'   => data_get($session, 'customer_phone', ''),
-            'customer_address' => data_get($session, 'customer_address', ''),
-            'customer_note'    => data_get($session, 'customer_note', ''),
+            'customer_name'     => data_get($session, 'customer_name', ''),
+            'customer_phone'    => data_get($session, 'customer_phone', ''),
+            'customer_city'     => data_get($session, 'customer_city', ''),
+            'customer_district' => data_get($session, 'customer_district', ''),
+            'customer_village'  => data_get($session, 'customer_village', ''),
+            'customer_rt'       => data_get($session, 'customer_rt', ''),
+            'customer_rw'       => data_get($session, 'customer_rw', ''),
+            'customer_street'   => data_get($session, 'customer_street', ''),
+            'customer_address'  => data_get($session, 'customer_address', ''),
+            'customer_lat'      => data_get($session, 'customer_lat', ''),
+            'customer_lng'      => data_get($session, 'customer_lng', ''),
+            'customer_note'     => data_get($session, 'customer_note', ''),
         ];
 
         $settings = SiteSetting::pluck('value', 'key');
@@ -170,8 +197,12 @@ class PackageOrderController extends Controller
         $price = 'Rp ' . number_format((float) $package->price_monthly, 0, ',', '.');
         $duration = !empty($package->duration_months) ? $package->duration_months . ' bulan' : '1 bulan';
 
+        $mapsLink = (!empty($data['customer_lat']) && !empty($data['customer_lng']))
+            ? "https://maps.google.com/?q={$data['customer_lat']},{$data['customer_lng']}"
+            : 'Belum ditandai di peta';
+
         return implode("\n", [
-            'Halo Admin FiberMedia Play, saya ingin memesan paket berikut:',
+            'Halo Admin FiberMedia Play, saya ingin memesan paket internet berikut:',
             '',
             '=== DATA PAKET ===',
             'Nama Paket: ' . $package->name,
@@ -180,10 +211,16 @@ class PackageOrderController extends Controller
             'Harga: ' . $price,
             'Durasi: ' . $duration,
             '',
-            '=== DATA PELANGGAN ===',
-            'Nama Lengkap: ' . $data['customer_name'],
-            'Nomor HP/WhatsApp: ' . $data['customer_phone'],
-            'Alamat Lengkap: ' . $data['customer_address'],
+            '=== DATA PELANGGAN & WILAYAH ===',
+            'Nama Lengkap: ' . ($data['customer_name'] ?? '-'),
+            'Nomor HP/WhatsApp: ' . ($data['customer_phone'] ?? '-'),
+            'Kota/Kabupaten: ' . ($data['customer_city'] ?? '-'),
+            'Kecamatan: ' . ($data['customer_district'] ?? '-'),
+            'Kelurahan/Desa: ' . ($data['customer_village'] ?? '-'),
+            'RT/RW: RT ' . ($data['customer_rt'] ?? '-') . ' / RW ' . ($data['customer_rw'] ?? '-'),
+            'Alamat / Jalan: ' . ($data['customer_street'] ?? '-'),
+            'Alamat Lengkap: ' . ($data['customer_address'] ?? '-'),
+            'Titik Lokasi (Maps): ' . $mapsLink,
             'Catatan Tambahan: ' . (!empty($data['customer_note']) ? $data['customer_note'] : '-'),
         ]);
     }

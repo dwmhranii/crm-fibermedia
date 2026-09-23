@@ -69,8 +69,8 @@
 @push('styles')
 <style>
     :root {
-        --brand-blue: #003682;
-        --brand-blue-soft: #0b63a8;
+        --brand-blue: #1E5FA8;
+        --brand-blue-soft: #2575C0;
         --brand-green: #5bab23;
     }
 
@@ -89,7 +89,7 @@
         letter-spacing: .16em;
         padding: .35rem .8rem;
         border-radius: 999px;
-        background: rgba(0, 54, 130, .06);
+        background: rgba(30, 95, 168, .08);
         color: var(--brand-blue);
         font-weight: 700;
         margin-bottom: .6rem;
@@ -132,7 +132,7 @@
         padding: .25rem .65rem;
         border-radius: 999px;
         font-size: .8rem;
-        background: rgba(0,54,130,.06);
+        background: rgba(30,95,168,.08);
         color: #5e759dff;
         margin: .1rem .25rem .1rem 0;
     }
@@ -162,7 +162,7 @@
     }
 
     .profile-mission-card {
-        background: radial-gradient(circle at top left, rgba(0,54,130,0.16) 0, transparent 45%), #ffffff;
+        background: radial-gradient(circle at top left, rgba(30,95,168,0.16) 0, transparent 45%), #ffffff;
     }
 
     .profile-section-label {
@@ -215,7 +215,7 @@
         font-size: 1.1rem;
         color: #ffffff;
         background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
-        box-shadow: 0 10px 20px rgba(0,54,130,0.28);
+        box-shadow: 0 10px 20px rgba(30,95,168,0.28);
         flex-shrink: 0;
     }
 
@@ -251,7 +251,7 @@
         padding: .25rem .6rem;
         border-radius: 999px;
         font-size: .78rem;
-        background: rgba(0,54,130,0.06);
+        background: rgba(30,95,168,0.08);
         color: #111827;
         margin: .1rem .25rem .1rem 0;
     }
@@ -342,7 +342,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
-        box-shadow: 0 24px 60px rgba(0,54,130,0.55);
+        box-shadow: 0 24px 60px rgba(30,95,168,0.40);
     }
     .profile-cta-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
     .profile-cta-text { font-size: .9rem; margin-bottom: 0; opacity: .96; }
@@ -638,7 +638,7 @@
 
                             <div class="profile-gallery-pill">
                                 <i class="bi bi-palette"></i>
-                                <span>#003682 · #5BAB23</span>
+                                <span>#1E5FA8 · #5BAB23</span>
                             </div>
                         </div>
                     </div>
