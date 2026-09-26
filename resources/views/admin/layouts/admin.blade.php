@@ -472,6 +472,13 @@
                 </a>
             @endif
 
+            <div class="adm-nav-title">Preview Publik</div>
+            <a class="adm-link" href="{{ route('public.simulation') }}" target="_blank">
+                <span class="icon"><i class="bi bi-calculator"></i></span>
+                <span>Simulasi Biaya</span>
+                <span class="badge text-bg-light ms-auto small"><i class="bi bi-box-arrow-up-right"></i></span>
+            </a>
+
             <div class="adm-nav-title">System</div>
 
             @if($isSuper)

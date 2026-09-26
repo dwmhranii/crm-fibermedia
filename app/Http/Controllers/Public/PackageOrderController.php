@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Addon;
 use App\Models\Package;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
@@ -14,10 +15,37 @@ class PackageOrderController extends Controller
 
     public function step1(Request $request)
     {
-        $type = $request->get('type', 'home');
+        $type = $request->get('type');
         $category = $request->get('category');
         $sort = $request->get('sort');
         $q = trim((string) $request->get('q', ''));
+
+        $session = Session::get(self::SESSION_KEY, []);
+        $selectedPackageId = data_get($session, 'package_id');
+        $selectedAddonIds = (array) data_get($session, 'addon_ids', []);
+
+        if ($request->filled('package')) {
+            $preselectedPackage = Package::query()
+                ->where('is_active', 1)
+                ->where(function ($query) use ($request) {
+                    $query->where('id', $request->package)
+                        ->orWhere('slug', $request->package);
+                })
+                ->first();
+
+            if ($preselectedPackage) {
+                $selectedPackageId = $preselectedPackage->id;
+                if (!$type && !empty($preselectedPackage->type)) {
+                    $type = $preselectedPackage->type;
+                }
+            }
+        }
+
+        if ($request->has('addon_ids')) {
+            $selectedAddonIds = array_map('intval', (array) $request->input('addon_ids', []));
+        }
+
+        $type = $type ?: 'home';
 
         $packages = Package::query()
             ->where('is_active', 1)
@@ -41,26 +69,30 @@ class PackageOrderController extends Controller
             })
             ->get();
 
-        $session = Session::get(self::SESSION_KEY, []);
-        $selectedPackageId = data_get($session, 'package_id');
+        $addons = Addon::query()
+            ->where('is_active', 1)
+            ->where(function ($query) use ($type) {
+                $query->where('type', $type)
+                    ->orWhereNull('type')
+                    ->orWhere('type', '');
+            })
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('name', 'asc')
+            ->get();
 
-        if ($request->filled('package')) {
-            $package = Package::query()
+        if ($addons->isEmpty()) {
+            $addons = Addon::query()
                 ->where('is_active', 1)
-                ->where(function ($query) use ($request) {
-                    $query->where('id', $request->package)
-                        ->orWhere('slug', $request->package);
-                })
-                ->first();
-
-            if ($package) {
-                $selectedPackageId = $package->id;
-            }
+                ->orderBy('sort_order', 'asc')
+                ->orderBy('name', 'asc')
+                ->get();
         }
 
         return view('public.packages.order.step1', compact(
             'packages',
+            'addons',
             'selectedPackageId',
+            'selectedAddonIds',
             'type',
             'category',
             'sort',
@@ -72,6 +104,9 @@ class PackageOrderController extends Controller
     {
         $data = $request->validate([
             'package_id' => ['required', 'integer', 'exists:packages,id'],
+            'addon_ids' => ['nullable', 'array'],
+            'addon_ids.*' => ['integer', 'exists:addons,id'],
+            'duration_months' => ['nullable', 'integer'],
         ]);
 
         $package = Package::query()
@@ -80,6 +115,10 @@ class PackageOrderController extends Controller
 
         $session = Session::get(self::SESSION_KEY, []);
         $session['package_id'] = $package->id;
+        $session['addon_ids'] = array_map('intval', $request->input('addon_ids', []));
+        if ($request->filled('duration_months')) {
+            $session['duration_months'] = (int) $request->input('duration_months');
+        }
 
         Session::put(self::SESSION_KEY, $session);
 
@@ -99,6 +138,11 @@ class PackageOrderController extends Controller
             ->where('is_active', 1)
             ->findOrFail($packageId);
 
+        $addonIds = (array) data_get($session, 'addon_ids', []);
+        $selectedAddons = !empty($addonIds)
+            ? Addon::query()->where('is_active', 1)->whereIn('id', $addonIds)->get()
+            : collect();
+
         $formData = [
             'customer_name'     => data_get($session, 'customer_name', ''),
             'customer_phone'    => data_get($session, 'customer_phone', ''),
@@ -114,7 +158,7 @@ class PackageOrderController extends Controller
             'customer_note'     => data_get($session, 'customer_note', ''),
         ];
 
-        return view('public.packages.order.step2', compact('package', 'formData'));
+        return view('public.packages.order.step2', compact('package', 'formData', 'selectedAddons'));
     }
 
     public function storeStep2(Request $request)
@@ -163,6 +207,11 @@ class PackageOrderController extends Controller
             ->where('is_active', 1)
             ->findOrFail($packageId);
 
+        $addonIds = (array) data_get($session, 'addon_ids', []);
+        $selectedAddons = !empty($addonIds)
+            ? Addon::query()->where('is_active', 1)->whereIn('id', $addonIds)->get()
+            : collect();
+
         $formData = [
             'customer_name'     => data_get($session, 'customer_name', ''),
             'customer_phone'    => data_get($session, 'customer_phone', ''),
@@ -182,17 +231,18 @@ class PackageOrderController extends Controller
         $wa = preg_replace('/\D+/', '', $settings['contact_whatsapp'] ?? '6281234567890');
 
         $whatsappUrl = 'https://wa.me/' . $wa . '?text=' . urlencode(
-            $this->buildWhatsappMessage($package, $formData)
+            $this->buildWhatsappMessage($package, $formData, $selectedAddons)
         );
 
         return view('public.packages.order.step3', compact(
             'package',
             'formData',
+            'selectedAddons',
             'whatsappUrl'
         ));
     }
 
-    private function buildWhatsappMessage(Package $package, array $data): string
+    private function buildWhatsappMessage(Package $package, array $data, $selectedAddons = null): string
     {
         $price = 'Rp ' . number_format((float) $package->price_monthly, 0, ',', '.');
         $duration = !empty($package->duration_months) ? $package->duration_months . ' bulan' : '1 bulan';
@@ -201,6 +251,30 @@ class PackageOrderController extends Controller
             ? "https://maps.google.com/?q={$data['customer_lat']},{$data['customer_lng']}"
             : 'Belum ditandai di peta';
 
+        $addonLines = [];
+        $hasAddons = $selectedAddons && $selectedAddons->count() > 0;
+        $packageMonthly = (float) $package->price_monthly;
+        $addonMonthly = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'monthly')->sum('price') : 0;
+        $addonOneTime = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'one_time')->sum('price') : 0;
+        $totalMonthly = $packageMonthly + $addonMonthly;
+
+        if ($hasAddons) {
+            foreach ($selectedAddons as $addon) {
+                $p = 'Rp ' . number_format((float) $addon->price, 0, ',', '.');
+                $u = $addon->pricing_type === 'monthly' ? '/bln' : '(sekali bayar)';
+                $addonLines[] = "- {$addon->name}: {$p} {$u}";
+            }
+        } else {
+            $addonLines[] = 'Tidak ada (Hanya paket internet)';
+        }
+
+        $totalSummaryLines = [
+            'Total Bulanan: Rp ' . number_format($totalMonthly, 0, ',', '.') . ' /bln',
+        ];
+        if ($addonOneTime > 0) {
+            $totalSummaryLines[] = 'Biaya Perangkat Add-on (1x): Rp ' . number_format($addonOneTime, 0, ',', '.');
+        }
+
         return implode("\n", [
             'Halo Admin FiberMedia Play, saya ingin memesan paket internet berikut:',
             '',
@@ -208,8 +282,14 @@ class PackageOrderController extends Controller
             'Nama Paket: ' . $package->name,
             'Tipe: ' . ($package->type === 'business' ? 'Bisnis' : 'Home Retail'),
             'Kecepatan: ' . $package->speed_mbps . ' Mbps',
-            'Harga: ' . $price,
+            'Harga Paket: ' . $price . '/bln',
             'Durasi: ' . $duration,
+            '',
+            '=== LAYANAN / ADD-ONS TAMBAHAN ===',
+            implode("\n", $addonLines),
+            '',
+            '=== TOTAL ESTIMASI BIAYA ===',
+            implode("\n", $totalSummaryLines),
             '',
             '=== DATA PELANGGAN & WILAYAH ===',
             'Nama Lengkap: ' . ($data['customer_name'] ?? '-'),

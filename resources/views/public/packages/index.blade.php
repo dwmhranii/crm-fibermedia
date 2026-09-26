@@ -1139,7 +1139,7 @@ body.dark-mode .btn-wa-consult {
 
                         <div class="paket-actions">
                             <a href="{{ route('public.order.step1', ['package' => $recPkg->slug]) }}" class="paket-btn paket-btn-primary">
-                                <span>Pesan Paket Ini</span>
+                                <span>Pesan Sekarang</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
                             <a href="{{ $recWaUrl }}" class="paket-btn paket-btn-secondary" target="_blank" rel="noopener noreferrer">

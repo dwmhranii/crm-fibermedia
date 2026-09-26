@@ -142,8 +142,12 @@
                         }
                     @endphp
 
-                    <a href="{{ $waUrl }}" target="_blank" class="btn btn-primary btn-lg px-4">
-                        <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+                    <a href="{{ route('public.order.step1', ['package' => $package->slug ?? $package->id]) }}" class="btn btn-primary btn-lg px-4">
+                        <i class="bi bi-cart-check me-1"></i> Pesan Sekarang
+                    </a>
+
+                    <a href="{{ $waUrl }}" target="_blank" class="btn btn-outline-success btn-lg px-3" title="Tanya Customer Service">
+                        <i class="bi bi-whatsapp me-1"></i> Tanya CS
                     </a>
 
                     <a href="{{ route('public.coverage') }}" class="btn btn-outline-secondary btn-lg">

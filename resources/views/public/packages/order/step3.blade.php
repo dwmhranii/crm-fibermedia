@@ -194,6 +194,158 @@
     color: #94a3b8;
 }
 
+/* Add-ons Summary Card */
+.addons-summary-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: #ffffff;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+}
+
+.addons-summary-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.addons-summary-list {
+    padding: 0.5rem 1.25rem;
+}
+
+.addons-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.addons-summary-item:last-child {
+    border-bottom: 0;
+}
+
+body.dark-mode .addons-summary-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .addons-summary-header {
+    background: #0f172a;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .addons-summary-item {
+    border-bottom-color: #334155;
+}
+
+/* Total Estimation Card */
+.order-total-card {
+    border: 1.5px solid #dbeafe;
+    border-radius: 18px;
+    background: #ffffff;
+    margin-bottom: 1.35rem;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(30, 95, 168, 0.05);
+}
+
+.order-total-header {
+    background: linear-gradient(135deg, #f8fafc, #f0fdf4);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.9rem 1.35rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.order-total-body {
+    padding: 1.15rem 1.35rem;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+}
+
+.total-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 0.75rem 0;
+}
+
+.total-highlight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.total-main-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.total-main-sub {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.total-main-amount {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #1E5FA8;
+    line-height: 1.1;
+}
+
+.total-onetime-alert {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+}
+
+body.dark-mode .order-total-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .order-total-header {
+    background: #0f172a;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .total-main-label {
+    color: #f1f5f9;
+}
+
+body.dark-mode .total-divider {
+    background: #334155;
+}
+
+body.dark-mode .total-main-amount {
+    color: #38bdf8;
+}
+
+body.dark-mode .total-onetime-alert {
+    background: #451a03;
+    border-color: #78350f;
+    color: #fef3c7;
+}
+
 /* Details Section Card */
 .details-card {
     border: 1px solid #e2e8f0;
@@ -633,6 +785,109 @@ body.dark-mode .order-popup-close:hover {
                     <div class="pkg-price-val">Rp {{ number_format((float) $package->price_monthly, 0, ',', '.') }}</div>
                     <div class="pkg-price-unit">/ bulan (Flat)</div>
                 </div>
+            </div>
+        </div>
+
+        {{-- 1b. Add-ons Summary Card (If any selected) --}}
+        @if(isset($selectedAddons) && $selectedAddons->count() > 0)
+            <div class="addons-summary-card">
+                <div class="addons-summary-header">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-puzzle-fill text-primary"></i>
+                        <span class="fw-bold text-dark">Layanan / Perangkat Tambahan ({{ $selectedAddons->count() }} Add-on)</span>
+                    </div>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1">
+                        Dipilih
+                    </span>
+                </div>
+
+                <div class="addons-summary-list">
+                    @foreach($selectedAddons as $item)
+                        @php
+                            $u = $item->pricing_type === 'monthly' ? '/bln' : '(sekali bayar)';
+                        @endphp
+                        <div class="addons-summary-item">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-check-circle-fill text-success"></i>
+                                <div>
+                                    <div class="fw-semibold text-dark">{{ $item->name }}</div>
+                                    @if($item->short_description)
+                                        <div class="small text-muted">{{ Str::limit($item->short_description, 60) }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-primary">Rp {{ number_format((float) $item->price, 0, ',', '.') }}</div>
+                                <div class="small text-muted">{{ $u }}</div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        {{-- 1c. Total Estimation Breakdown Card --}}
+        @php
+            $hasAddons = isset($selectedAddons) && $selectedAddons->count() > 0;
+            $packageMonthly = (float) $package->price_monthly;
+            $addonMonthly = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'monthly')->sum('price') : 0;
+            $addonOneTime = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'one_time')->sum('price') : 0;
+            $totalMonthly = $packageMonthly + $addonMonthly;
+        @endphp
+
+        <div class="order-total-card">
+            <div class="order-total-header">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-calculator-fill text-primary"></i>
+                    <span class="fw-bold text-dark">Ringkasan &amp; Estimasi Total Biaya</span>
+                </div>
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1 fw-semibold">
+                    Estimasi Pembayaran
+                </span>
+            </div>
+
+            <div class="order-total-body">
+                <div class="total-row">
+                    <span class="text-muted">Paket Utama ({{ $package->name }} - {{ $package->speed_mbps }} Mbps)</span>
+                    <span class="fw-semibold text-dark">Rp {{ number_format($packageMonthly, 0, ',', '.') }} /bln</span>
+                </div>
+
+                @if($hasAddons && $addonMonthly > 0)
+                    <div class="total-row">
+                        <span class="text-muted">
+                            Add-on Bulanan ({{ $selectedAddons->where('pricing_type', 'monthly')->count() }} item: {{ $selectedAddons->where('pricing_type', 'monthly')->pluck('name')->implode(', ') }})
+                        </span>
+                        <span class="fw-semibold text-primary">+ Rp {{ number_format($addonMonthly, 0, ',', '.') }} /bln</span>
+                    </div>
+                @endif
+
+                <div class="total-divider"></div>
+
+                <div class="total-highlight-row">
+                    <div>
+                        <div class="total-main-label">Estimasi Total Bulanan</div>
+                        <div class="total-main-sub">Biaya rutin berlangganan per bulan</div>
+                    </div>
+                    <div class="text-end">
+                        <div class="total-main-amount">Rp {{ number_format($totalMonthly, 0, ',', '.') }}</div>
+                        <span class="small text-muted">/ bulan (Flat)</span>
+                    </div>
+                </div>
+
+                @if($hasAddons && $addonOneTime > 0)
+                    <div class="total-onetime-alert mt-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-tag-fill text-warning me-1"></i>
+                                <strong>Biaya Perangkat Add-on:</strong>
+                                <span class="text-muted small ms-1">({{ $selectedAddons->where('pricing_type', 'one_time')->pluck('name')->implode(', ') }})</span>
+                            </div>
+                            <div class="fw-bold text-dark fs-6">
+                                Rp {{ number_format($addonOneTime, 0, ',', '.') }} <span class="small text-muted fw-normal">(1x bayar)</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 

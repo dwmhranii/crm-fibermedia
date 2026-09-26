@@ -555,7 +555,7 @@
 
                     {{-- LAYANAN / PAKET DROPDOWN --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('public.packages*', 'public.addons*') ? 'active' : '' }}"
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('public.packages*', 'public.addons*', 'public.simulation*') ? 'active' : '' }}"
                            href="{{ route('public.packages') }}"
                            id="layananDropdown"
                            role="button"
@@ -572,6 +572,11 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('public.addons') }}">
                                     <i class="bi bi-plus-circle"></i> Add-on Tambahan
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{ request()->routeIs('public.simulation') ? 'active' : '' }}" href="{{ route('public.simulation') }}">
+                                    <i class="bi bi-calculator"></i> Simulasi Biaya
                                 </a>
                             </li>
                             <li>
@@ -706,6 +711,7 @@
                         <div class="footer-heading">Quick Link</div>
                         <a href="{{ route('public.coverage') }}" class="footer-link">Cek Wilayah</a>
                         <a href="{{ route('public.packages') }}" class="footer-link">Harga Paket</a>
+                        <a href="{{ route('public.simulation') }}" class="footer-link">Simulasi Biaya</a>
                         <a href="https://wa.me/{{ $wa }}?text=Halo%20saya%20ingin%20berlangganan%20{{ urlencode($siteTitle) }}"
                            target="_blank"
                            class="footer-link">

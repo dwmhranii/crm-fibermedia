@@ -111,25 +111,69 @@
     border: 1px solid #dbeafe;
     background: linear-gradient(135deg, #eff6ff, #f0fdf4);
     border-radius: 16px;
-    padding: .85rem 1.15rem;
+    padding: 1rem 1.25rem;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
+}
+
+.order-package-box.has-addons {
+    background: linear-gradient(135deg, #f0f7ff, #ffffff);
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 14px rgba(30, 95, 168, .06);
+}
+
+.order-pkg-left {
+    flex: 1 1 300px;
+}
+
+.order-pkg-right {
+    flex-shrink: 0;
 }
 
 .order-package-name {
     font-weight: 800;
     color: #1E5FA8;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
 }
 
 .order-package-meta {
     color: #059669;
-    font-weight: 700;
-    font-size: .92rem;
+    font-weight: 800;
+    font-size: 1.15rem;
+}
+
+.order-package-total {
+    color: #1E5FA8;
+    font-weight: 800;
+    font-size: 1.35rem;
+    line-height: 1.1;
+}
+
+.order-addon-tag {
+    font-size: .78rem;
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    padding: 3px 10px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+}
+
+body.dark-mode .order-package-box {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .order-addon-tag {
+    background: #0f172a;
+    border-color: #334155;
+    color: #e2e8f0;
 }
 
 .order-section-divider {
@@ -548,16 +592,61 @@ body.dark-mode .btn-order-back:hover {
             </div>
         @endif
 
-        <div class="order-package-box">
-            <div>
+        @php
+            $hasAddons = isset($selectedAddons) && $selectedAddons->count() > 0;
+            $packageMonthly = (float) $package->price_monthly;
+            $addonMonthly = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'monthly')->sum('price') : 0;
+            $addonOneTime = $hasAddons ? (float) $selectedAddons->where('pricing_type', 'one_time')->sum('price') : 0;
+            $totalMonthly = $packageMonthly + $addonMonthly;
+        @endphp
+
+        <div class="order-package-box {{ $hasAddons ? 'has-addons' : '' }}">
+            <div class="order-pkg-left">
                 <span class="text-muted small">Paket yang Dipilih:</span>
-                <div class="order-package-name">{{ $package->name }}</div>
-            </div>
-            <div class="text-end">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1">{{ $package->speed_mbps }} Mbps</span>
-                <div class="order-package-meta mt-1">
-                    Rp {{ number_format((float) $package->price_monthly, 0, ',', '.') }} / bulan
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="order-package-name">{{ $package->name }}</span>
+                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1">{{ $package->speed_mbps }} Mbps</span>
                 </div>
+
+                @if($hasAddons)
+                    <div class="order-pkg-addons-mini mt-2 pt-2 border-top">
+                        <div class="small fw-bold text-dark mb-1 d-flex align-items-center gap-1">
+                            <i class="bi bi-puzzle-fill text-primary"></i>
+                            <span>Add-on Tambahan ({{ $selectedAddons->count() }}):</span>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach($selectedAddons as $ad)
+                                @php
+                                    $pLabel = $ad->pricing_type === 'monthly' ? '/bln' : '(1x bayar)';
+                                @endphp
+                                <span class="order-addon-tag">
+                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                    <strong>{{ $ad->name }}</strong>
+                                    <span class="text-muted">(Rp {{ number_format((float) $ad->price, 0, ',', '.') }} {{ $pLabel }})</span>
+                                </span>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            <div class="order-pkg-right text-md-end">
+                @if($hasAddons)
+                    <span class="text-muted small d-block">Estimasi Total Bulanan:</span>
+                    <div class="order-package-total">
+                        Rp {{ number_format($totalMonthly, 0, ',', '.') }} <span class="fs-6 fw-normal text-muted">/bln</span>
+                    </div>
+                    @if($addonOneTime > 0)
+                        <div class="small text-muted mt-1">
+                            + Biaya Perangkat: <strong>Rp {{ number_format($addonOneTime, 0, ',', '.') }}</strong> (sekali bayar)
+                        </div>
+                    @endif
+                @else
+                    <span class="text-muted small d-block">Biaya Berlangganan:</span>
+                    <div class="order-package-meta">
+                        Rp {{ number_format($packageMonthly, 0, ',', '.') }} / bulan
+                    </div>
+                @endif
             </div>
         </div>
 

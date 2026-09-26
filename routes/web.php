@@ -20,6 +20,7 @@ use App\Http\Controllers\Public\PackageOrderController;
 use App\Http\Controllers\Admin\WhyCardController;
 use App\Http\Controllers\Public\AddonsController;
 use App\Http\Controllers\Admin\AddonController;
+use App\Http\Controllers\Public\SimulationController;
 
 
 // publik
@@ -32,9 +33,9 @@ Route::get('/packages/{package:slug}', [PackagesController::class, 'show'])->nam
 Route::get('/faq', [\App\Http\Controllers\Public\FaqController::class, 'index'])->name('public.faq');
 Route::get('/profil', [ProfileController::class, 'index'])->name('public.profil');
 Route::get('/coverage', [\App\Http\Controllers\Public\CoverageController::class, 'index'])->name('public.coverage');
-Route::get('/packages/{package:slug}', [PackagesController::class, 'show'])->name('public.packages.show');
 
 Route::get('/addons', [AddonsController::class, 'index'])->name('public.addons');
+Route::get('/simulasi-biaya', [SimulationController::class, 'index'])->name('public.simulation');
 
 Route::prefix('order')->name('public.order.')->group(function () {
     Route::get('/start', [PackageOrderController::class, 'step1'])->name('step1');

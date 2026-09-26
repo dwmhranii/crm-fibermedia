@@ -179,72 +179,79 @@
 
 /* ===================== FILTER SEARCH BAR ===================== */
 .order-search-box {
-    background: linear-gradient(135deg, #f8fbff, #f0fdf4);
-    border: 1px solid #dbeafe;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: .75rem 1rem;
     margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, .03);
 }
 
 .order-search-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.order-search-input-group {
-    flex: 1 1 200px;
-    display: flex !important;
-    flex-wrap: nowrap !important;
-}
-
-.order-search-input-group .input-group-text {
-    background: #fff;
-    border-color: #cbd5e1;
-    border-right: 0;
-    border-radius: 10px 0 0 10px;
-    padding: 0 10px;
+.order-search-wrap {
+    flex: 1 1 300px;
     display: flex;
     align-items: center;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    height: 42px;
+    padding: 3px 4px 3px 12px;
+    transition: all .2s ease;
+}
+
+.order-search-wrap:focus-within {
+    border-color: #1E5FA8;
+    box-shadow: 0 0 0 3px rgba(30, 95, 168, .12);
+}
+
+.order-search-icon {
+    color: #94a3b8;
+    font-size: .95rem;
+    flex-shrink: 0;
+    margin-right: 8px;
 }
 
 .order-search-input {
-    height: 38px;
-    border-radius: 0 10px 10px 0 !important;
-    border: 1px solid #cbd5e1;
-    border-left: 0;
-    font-size: .84rem;
-    color: #0f172a;
-    background: #fff;
-    width: 100%;
-}
-
-.order-search-input:focus {
+    border: none;
+    background: transparent;
     outline: none;
-    border-color: #1E5FA8;
-    box-shadow: none;
-}
-
-.order-filter-select {
-    max-width: 190px;
-    height: 38px;
-    border-radius: 10px;
-    border: 1px solid #cbd5e1;
-    font-size: .84rem;
+    flex: 1;
+    min-width: 0;
+    font-size: .86rem;
     color: #0f172a;
-    box-shadow: none !important;
+    height: 100%;
+    padding: 0;
 }
 
-.order-filter-select:focus {
-    border-color: #1E5FA8;
-    box-shadow: 0 0 0 0.15rem rgba(30, 95, 168, .12) !important;
+.order-search-input::placeholder {
+    color: #94a3b8;
+}
+
+.order-search-clear {
+    color: #94a3b8;
+    padding: 4px 6px;
+    font-size: .85rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: color .15s ease;
+    flex-shrink: 0;
+}
+
+.order-search-clear:hover {
+    color: #ef4444;
 }
 
 .btn-order-apply {
-    height: 38px;
-    padding: 0 16px;
-    border-radius: 999px;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 8px;
     border: 0;
     font-size: .82rem;
     font-weight: 600;
@@ -253,21 +260,106 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: .2s ease;
-    box-shadow: 0 4px 12px rgba(30, 95, 168, .2);
+    gap: 6px;
+    transition: all .2s ease;
+    box-shadow: 0 2px 6px rgba(30, 95, 168, .2);
+    flex-shrink: 0;
 }
 
 .btn-order-apply:hover {
     color: #fff;
     transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(30, 95, 168, .3);
+}
+
+.order-search-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.order-sort-wrap {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    height: 42px;
+    padding: 0 28px 0 12px;
+    transition: all .2s ease;
+}
+
+.order-sort-wrap:hover,
+.order-sort-wrap:focus-within {
+    border-color: #1E5FA8;
+    box-shadow: 0 0 0 3px rgba(30, 95, 168, .1);
+}
+
+.order-sort-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .82rem;
+    font-weight: 600;
+    color: #64748b;
+    white-space: nowrap;
+    pointer-events: none;
+    margin-right: 4px;
+}
+
+.order-sort-label i {
+    color: #1E5FA8;
+    font-size: .85rem;
+}
+
+.order-filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: .84rem;
+    font-weight: 700;
+    color: #1e293b;
+    cursor: pointer;
+    padding: 0;
+    height: 100%;
+    box-shadow: none !important;
+}
+
+.order-sort-chevron {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    font-size: .75rem;
+    color: #64748b;
 }
 
 .btn-order-reset {
-    height: 38px;
+    height: 42px;
     padding: 0 14px;
-    border-radius: 999px;
+    border-radius: 12px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #64748b;
     font-size: .82rem;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all .2s ease;
+    flex-shrink: 0;
+}
+
+.btn-order-reset:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #dc2626;
+    transform: translateY(-1px);
 }
 
 .package-section-title {
@@ -527,16 +619,62 @@ body.dark-mode .order-filter-btn.active {
 }
 
 body.dark-mode .order-search-box {
-    background: linear-gradient(135deg, #021021, #02260e);
-    border-color: #1f2937;
+    background: #0f172a;
+    border-color: #1e293b;
 }
 
-body.dark-mode .order-search-input,
-body.dark-mode .order-filter-select,
-body.dark-mode .order-search-input-group .input-group-text {
-    background: #0f172a;
-    color: #e5e7eb;
-    border-color: #243041;
+body.dark-mode .order-search-wrap,
+body.dark-mode .order-sort-wrap,
+body.dark-mode .btn-order-reset {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .order-search-wrap:focus-within,
+body.dark-mode .order-sort-wrap:hover,
+body.dark-mode .order-sort-wrap:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .2);
+}
+
+body.dark-mode .order-search-input {
+    color: #f1f5f9;
+}
+
+body.dark-mode .order-search-input::placeholder {
+    color: #64748b;
+}
+
+body.dark-mode .order-sort-label {
+    color: #94a3b8;
+}
+
+body.dark-mode .order-sort-label i {
+    color: #60a5fa;
+}
+
+body.dark-mode .order-filter-select {
+    color: #f1f5f9;
+}
+
+body.dark-mode .order-filter-select option {
+    background: #1e293b;
+    color: #f1f5f9;
+}
+
+body.dark-mode .order-sort-chevron {
+    color: #94a3b8;
+}
+
+body.dark-mode .btn-order-reset {
+    color: #94a3b8;
+}
+
+body.dark-mode .btn-order-reset:hover {
+    background: rgba(239, 68, 68, .15);
+    border-color: #ef4444;
+    color: #f87171;
 }
 
 body.dark-mode .order-title,
@@ -674,48 +812,47 @@ body.dark-mode .pkg-speed-pill {
     .order-search-row {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 8px;
     }
 
-    .order-search-input-group {
+    .order-search-wrap {
         width: 100% !important;
         flex: 1 1 100% !important;
+        height: 40px;
     }
 
     .order-search-input {
-        height: 36px;
-        font-size: .8rem;
+        font-size: .82rem;
     }
 
-    .order-search-input-group .input-group-text {
-        padding: 0 8px;
-        font-size: .85rem;
+    .btn-order-apply {
+        height: 32px;
+        padding: 0 12px;
+        font-size: .78rem;
     }
 
     .order-search-actions {
         display: flex;
-        gap: 6px;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .order-sort-wrap {
+        height: 40px;
+        flex: 1;
         width: 100%;
     }
 
     .order-filter-select {
-        height: 36px;
         font-size: .8rem;
         flex: 1;
-        max-width: none;
-    }
-
-    .btn-order-apply {
-        height: 36px;
-        font-size: .78rem;
-        padding: 0 14px;
-        flex: 0 0 auto;
+        width: 100%;
     }
 
     .btn-order-reset {
-        height: 36px;
+        height: 40px;
         font-size: .78rem;
-        padding: 0 10px;
+        padding: 0 12px;
     }
 
     .package-section-title {
@@ -755,6 +892,350 @@ body.dark-mode .pkg-speed-pill {
         justify-content: center;
         font-size: .88rem;
         padding: 9px 20px;
+    }
+}
+
+/* ===================== ADD-ONS COLLAPSIBLE SECTION ===================== */
+.order-addons-wrapper {
+    margin-top: 1.75rem;
+    margin-bottom: .5rem;
+}
+
+.order-addons-banner {
+    background: #ffffff;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 18px;
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all .25s ease;
+}
+
+.order-addons-banner:hover {
+    border-color: #1E5FA8;
+    background: #f8fafc;
+}
+
+.order-addons-banner.is-active {
+    border-style: solid;
+    border-color: #1E5FA8;
+    background: linear-gradient(135deg, #f0f7ff, #ffffff);
+    box-shadow: 0 4px 16px rgba(30, 95, 168, .08);
+}
+
+.addons-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.addons-banner-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #1E5FA8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.addons-banner-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.addons-banner-sub {
+    font-size: .83rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.btn-addon-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 700;
+    border: 1.5px solid #1E5FA8;
+    color: #1E5FA8;
+    background: #ffffff;
+    transition: all .2s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(30, 95, 168, .08);
+}
+
+.btn-addon-toggle:hover {
+    background: #1E5FA8;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 95, 168, .2);
+}
+
+.btn-addon-toggle.active {
+    background: linear-gradient(135deg, #1E5FA8, #2575C0);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(30, 95, 168, .25);
+}
+
+.addons-count-badge {
+    background: #22c55e;
+    color: #ffffff;
+    font-size: .72rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 2px;
+}
+
+.order-addons-collapse {
+    display: none;
+    margin-top: 1rem;
+    animation: fadeInSlide .3s ease forwards;
+}
+
+.order-addons-collapse.show {
+    display: block;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.addons-collapse-inner {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.25rem;
+}
+
+.addons-helper-text {
+    font-size: .84rem;
+    color: #475569;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.order-addons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.order-addon-card {
+    position: relative;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .2s ease;
+    user-select: none;
+}
+
+.order-addon-card:hover {
+    border-color: #94a3b8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .06);
+}
+
+.order-addon-card.selected {
+    border-color: #1E5FA8;
+    background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+    box-shadow: 0 0 0 2px rgba(30, 95, 168, .2), 0 6px 18px rgba(30, 95, 168, .12);
+}
+
+.addon-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.addon-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .65rem;
+}
+
+.addon-cat-tag {
+    font-size: .72rem;
+    font-weight: 700;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.addon-check-indicator {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: transparent;
+    transition: all .2s ease;
+}
+
+.order-addon-card.selected .addon-check-indicator {
+    background: #1E5FA8;
+    border-color: #1E5FA8;
+    color: #ffffff;
+}
+
+.addon-card-body {
+    margin-bottom: .85rem;
+}
+
+.addon-name {
+    font-size: .95rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.addon-desc {
+    font-size: .78rem;
+    color: #64748b;
+    line-height: 1.35;
+}
+
+.addon-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: .65rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.addon-price-num {
+    font-size: .92rem;
+    font-weight: 800;
+    color: #1E5FA8;
+    display: block;
+}
+
+.addon-price-period {
+    font-size: .72rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.addon-btn-state {
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: #475569;
+    transition: all .2s ease;
+}
+
+.order-addon-card.selected .addon-btn-state {
+    background: #dbeafe;
+    color: #1E5FA8;
+}
+
+/* Dark mode for Addons */
+body.dark-mode .order-addons-banner {
+    background: #111827;
+    border-color: #334155;
+}
+
+body.dark-mode .order-addons-banner.is-active {
+    background: #1e293b;
+    border-color: #3b82f6;
+}
+
+body.dark-mode .addons-banner-icon {
+    background: #1e293b;
+    color: #60a5fa;
+}
+
+body.dark-mode .addons-banner-title {
+    color: #f1f5f9;
+}
+
+body.dark-mode .addons-collapse-inner {
+    background: #0f172a;
+    border-color: #1e293b;
+}
+
+body.dark-mode .order-addon-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .order-addon-card.selected {
+    background: #1e293b;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, .3);
+}
+
+body.dark-mode .addon-name {
+    color: #f1f5f9;
+}
+
+body.dark-mode .addon-cat-tag {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .addon-card-footer {
+    border-top-color: #334155;
+}
+
+/* Responsive Addons */
+@media (max-width: 991px) {
+    .order-addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .order-addons-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .btn-addon-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .order-addons-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -849,34 +1330,48 @@ body.dark-mode .pkg-speed-pill {
                 <input type="hidden" name="category" value="{{ $currentCategory }}">
 
                 <div class="order-search-row">
-                    <div class="input-group order-search-input-group">
-                        <span class="input-group-text"><i class="bi bi-search text-muted"></i></span>
+                    <div class="order-search-wrap">
+                        <i class="bi bi-search order-search-icon"></i>
                         <input
                             type="text"
                             name="q"
-                            class="form-control order-search-input"
+                            class="order-search-input"
                             value="{{ $currentQ }}"
                             placeholder="Cari nama paket atau kecepatan..."
+                            autocomplete="off"
                         >
+                        @if($currentQ)
+                            <a href="{{ filterUrl(['q' => null]) }}" class="order-search-clear" title="Hapus pencarian">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </a>
+                        @endif
+                        <button type="submit" class="btn-order-apply" title="Cari paket">
+                            <i class="bi bi-search"></i>
+                            <span>Cari</span>
+                        </button>
                     </div>
 
                     <div class="order-search-actions">
-                        <select name="sort" class="form-select form-select-sm order-filter-select" onchange="this.form.submit()">
-                            <option value="">Urutkan: Rekomendasi</option>
-                            <option value="price_asc" {{ $currentSort === 'price_asc' ? 'selected' : '' }}>Harga Termurah</option>
-                            <option value="price_desc" {{ $currentSort === 'price_desc' ? 'selected' : '' }}>Harga Termahal</option>
-                            <option value="speed_desc" {{ $currentSort === 'speed_desc' ? 'selected' : '' }}>Kecepatan Tertinggi</option>
-                        </select>
+                        <div class="order-sort-wrap">
+                            <span class="order-sort-label">
+                                <i class="bi bi-arrow-down-up"></i>
+                                <span>Urutkan:</span>
+                            </span>
+                            <select name="sort" class="order-filter-select" onchange="this.form.submit()">
+                                <option value="">Rekomendasi</option>
+                                <option value="price_asc" {{ $currentSort === 'price_asc' ? 'selected' : '' }}>Harga Termurah</option>
+                                <option value="price_desc" {{ $currentSort === 'price_desc' ? 'selected' : '' }}>Harga Termahal</option>
+                                <option value="speed_desc" {{ $currentSort === 'speed_desc' ? 'selected' : '' }}>Kecepatan Tertinggi</option>
+                            </select>
+                            <i class="bi bi-chevron-down order-sort-chevron"></i>
+                        </div>
 
                         @if($currentQ || $currentSort || $currentCategory)
-                            <a href="{{ route('public.order.step1', ['type' => $currentType]) }}" class="btn btn-outline-secondary btn-sm btn-order-reset">
-                                Reset
+                            <a href="{{ route('public.order.step1', ['type' => $currentType]) }}" class="btn-order-reset" title="Reset filter">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                <span>Reset</span>
                             </a>
                         @endif
-
-                        <button type="submit" class="btn btn-order-apply">
-                            Terapkan
-                        </button>
                     </div>
                 </div>
             </form>
@@ -956,6 +1451,109 @@ body.dark-mode .pkg-speed-pill {
                 @endforeach
             </div>
 
+            {{-- ADDONS OPTIONAL COLLAPSIBLE SECTION --}}
+            @if(isset($addons) && $addons->count() > 0)
+                @php
+                    $hasSelectedAddons = !empty($selectedAddonIds) && count($selectedAddonIds) > 0;
+                @endphp
+
+                <div class="order-addons-wrapper">
+                    {{-- Trigger Banner --}}
+                    <div class="order-addons-banner {{ $hasSelectedAddons ? 'is-active' : '' }}" id="addonsBanner">
+                        <div class="addons-banner-left">
+                            <div class="addons-banner-icon">
+                                <i class="bi bi-puzzle-fill"></i>
+                            </div>
+                            <div>
+                                <div class="addons-banner-title">
+                                    Layanan &amp; Perangkat Tambahan (Add-on)
+                                    <span class="badge bg-light text-primary border ms-1 fw-semibold">Opsional</span>
+                                </div>
+                                <p class="addons-banner-sub mb-0">
+                                    Tingkatkan konektivitas dengan WiFi Extender, Android TV Box, Router Tambahan, atau Hiburan Streaming.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="addons-banner-action">
+                            <button type="button" class="btn btn-addon-toggle {{ $hasSelectedAddons ? 'active' : '' }}" id="btnToggleAddons">
+                                <i class="bi {{ $hasSelectedAddons ? 'bi-dash-circle-fill' : 'bi-plus-circle-fill' }}" id="toggleAddonIcon"></i>
+                                <span id="toggleAddonText">{{ $hasSelectedAddons ? 'Tutup Add-on' : 'Tambah Add-on' }}</span>
+                                <span class="addons-count-badge {{ $hasSelectedAddons ? '' : 'd-none' }}" id="addonCountBadge">
+                                    {{ count($selectedAddonIds) }} Dipilih
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Collapsible Content --}}
+                    <div class="order-addons-collapse {{ $hasSelectedAddons ? 'show' : '' }}" id="addonsCollapse">
+                        <div class="addons-collapse-inner">
+                            <div class="addons-helper-text">
+                                <i class="bi bi-info-circle me-1 text-primary"></i>
+                                Klik pada kartu add-on untuk memilih atau membatalkan pilihan (bisa pilih lebih dari satu):
+                            </div>
+
+                            <div class="order-addons-grid">
+                                @foreach($addons as $addon)
+                                    @php
+                                        $isChecked = in_array($addon->id, old('addon_ids', $selectedAddonIds ?? []));
+                                        $pricingTypeLabel = $addon->pricing_type === 'monthly' ? '/bln' : 'sekali bayar';
+
+                                        $catIcons = [
+                                            'cctv'           => 'bi-camera-video-fill',
+                                            'network-device' => 'bi-router-fill',
+                                            'smart-home'     => 'bi-house-gear-fill',
+                                            'stb-android'    => 'bi-tv-fill',
+                                            'streaming'      => 'bi-play-circle-fill',
+                                        ];
+                                        $icon = $catIcons[$addon->category] ?? 'bi-box-seam-fill';
+                                    @endphp
+
+                                    <label class="order-addon-card {{ $isChecked ? 'selected' : '' }}" for="addon_{{ $addon->id }}">
+                                        <input
+                                            type="checkbox"
+                                            name="addon_ids[]"
+                                            value="{{ $addon->id }}"
+                                            id="addon_{{ $addon->id }}"
+                                            class="addon-checkbox"
+                                            {{ $isChecked ? 'checked' : '' }}
+                                        >
+
+                                        <div class="addon-card-head">
+                                            <span class="addon-cat-tag">
+                                                <i class="bi {{ $icon }}"></i>
+                                                {{ ucfirst(str_replace('-', ' ', $addon->category ?? 'Add-on')) }}
+                                            </span>
+                                            <span class="addon-check-indicator">
+                                                <i class="bi bi-check-lg"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="addon-card-body">
+                                            <div class="addon-name">{{ $addon->name }}</div>
+                                            @if($addon->short_description)
+                                                <div class="addon-desc">{{ Str::limit($addon->short_description, 75) }}</div>
+                                            @endif
+                                        </div>
+
+                                        <div class="addon-card-footer">
+                                            <div class="addon-price">
+                                                <span class="addon-price-num">Rp {{ number_format((float) $addon->price, 0, ',', '.') }}</span>
+                                                <span class="addon-price-period">{{ $pricingTypeLabel }}</span>
+                                            </div>
+                                            <span class="addon-btn-state">
+                                                {{ $isChecked ? '✓ Dipilih' : '+ Pilih' }}
+                                            </span>
+                                        </div>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="order-footer">
                 <button type="submit" class="btn-order-next">
                     Lanjut ke Data Pemesan <i class="bi bi-arrow-right"></i>
@@ -964,4 +1562,71 @@ body.dark-mode .pkg-speed-pill {
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const btnToggle = document.getElementById('btnToggleAddons');
+    const collapseSection = document.getElementById('addonsCollapse');
+    const banner = document.getElementById('addonsBanner');
+    const toggleIcon = document.getElementById('toggleAddonIcon');
+    const toggleText = document.getElementById('toggleAddonText');
+    const countBadge = document.getElementById('addonCountBadge');
+    const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
+
+    function updateAddonCounter() {
+        const checkedCount = document.querySelectorAll('.addon-checkbox:checked').length;
+        if (countBadge) {
+            countBadge.textContent = checkedCount + ' Dipilih';
+            if (checkedCount > 0) {
+                countBadge.classList.remove('d-none');
+                banner?.classList.add('is-active');
+            } else {
+                countBadge.classList.add('d-none');
+                if (!collapseSection?.classList.contains('show')) {
+                    banner?.classList.remove('is-active');
+                }
+            }
+        }
+    }
+
+    if (btnToggle && collapseSection) {
+        btnToggle.addEventListener('click', function () {
+            const isShowing = collapseSection.classList.contains('show');
+            if (isShowing) {
+                collapseSection.classList.remove('show');
+                btnToggle.classList.remove('active');
+                if (toggleIcon) toggleIcon.className = 'bi bi-plus-circle-fill';
+                if (toggleText) toggleText.textContent = 'Tambah Add-on';
+                const checkedCount = document.querySelectorAll('.addon-checkbox:checked').length;
+                if (checkedCount === 0) {
+                    banner?.classList.remove('is-active');
+                }
+            } else {
+                collapseSection.classList.add('show');
+                btnToggle.classList.add('active');
+                banner?.classList.add('is-active');
+                if (toggleIcon) toggleIcon.className = 'bi bi-dash-circle-fill';
+                if (toggleText) toggleText.textContent = 'Tutup Add-on';
+            }
+        });
+    }
+
+    addonCheckboxes.forEach(function (cb) {
+        cb.addEventListener('change', function () {
+            const card = this.closest('.order-addon-card');
+            const stateBtn = card?.querySelector('.addon-btn-state');
+            if (this.checked) {
+                card?.classList.add('selected');
+                if (stateBtn) stateBtn.textContent = '✓ Dipilih';
+            } else {
+                card?.classList.remove('selected');
+                if (stateBtn) stateBtn.textContent = '+ Pilih';
+            }
+            updateAddonCounter();
+        });
+    });
+
+    updateAddonCounter();
+});
+</script>
 @endsection

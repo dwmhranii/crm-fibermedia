@@ -623,19 +623,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                     @endif
 
                                     <div class="mt-auto">
-                                        @if($pkg->whatsapp_order_url)
-                                            <a href="{{ $pkg->whatsapp_order_url }}"
-                                               target="_blank"
-                                               class="btn reco-package-btn w-100 {{ $isBest ? 'btn-light text-dark' : 'btn-primary text-white' }}">
-                                                {{ $isBest ? 'Berlangganan Sekarang' : 'Pilih Paket Ini' }}
-                                            </a>
-                                        @else
-                                            <a href="https://wa.me/{{ $waNumberReco }}?text={{ urlencode('Halo CS, saya tertarik dengan paket ' . $pkg->name) }}"
-                                               target="_blank"
-                                               class="btn reco-package-btn w-100 {{ $isBest ? 'btn-light text-dark' : 'btn-success text-white' }}">
-                                                Hubungi Customer Service
-                                            </a>
-                                        @endif
+                                        <a href="{{ route('public.order.step1', ['package' => $pkg->slug ?? $pkg->id]) }}"
+                                           class="btn reco-package-btn w-100 {{ $isBest ? 'btn-light text-dark' : 'btn-primary text-white' }}">
+                                            Pesan Sekarang
+                                        </a>
 
                                         <div class="reco-package-note">
                                             *Rekomendasi ini disesuaikan dengan filter pilihanmu

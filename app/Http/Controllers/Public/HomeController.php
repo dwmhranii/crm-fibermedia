@@ -69,9 +69,12 @@ class HomeController extends Controller
                 return $card;
             });
 
-        $siteName = SiteSetting::where('key', 'site_name')->value('value') ?? 'FibermediaPlay';
-        $whatsApp = SiteSetting::where('key', 'contact_whatsapp')->value('value') ?? '6281234567890';
-        $whatsApp = preg_replace('/[^0-9]/', '', $whatsApp);
+        $settings = SiteSetting::pluck('value', 'key');
+        $siteName = !empty($settings['site_name']) ? $settings['site_name'] : 'FibermediaPlay';
+        $rawWa = !empty($settings['contact_whatsapp']) ? $settings['contact_whatsapp'] : '6289638881777';
+        $whatsApp = preg_replace('/[^0-9]/', '', $rawWa);
+        $contactEmail = !empty($settings['contact_email']) ? $settings['contact_email'] : 'info@fibermediaplay.net';
+        $contactAddress = !empty($settings['contact_address']) ? $settings['contact_address'] : 'Gadang, Kec. Sukun, Kota Malang, Jawa Timur';
 
         $recommendedPackages = collect();
 
@@ -92,6 +95,9 @@ class HomeController extends Controller
             'whyCards',
             'siteName',
             'whatsApp',
+            'contactEmail',
+            'contactAddress',
+            'settings',
             'recommendedPackages'
         ));
     }

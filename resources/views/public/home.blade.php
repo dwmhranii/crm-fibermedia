@@ -216,56 +216,184 @@
         }
     }
 
+    /* ===================== HERO CAROUSEL LUXURY STYLING ===================== */
+    #heroCarousel {
+        position: relative;
+    }
+    #heroCarousel .carousel-inner {
+        border-radius: 28px !important;
+        box-shadow: 0 24px 60px -12px rgba(30, 95, 168, 0.22), 0 8px 24px -4px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        overflow: hidden;
+    }
+    body.dark-mode #heroCarousel .carousel-inner {
+        box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    #heroCarousel .carousel-control-prev,
+    #heroCarousel .carousel-control-next {
+        width: 46px;
+        height: 46px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 1.25rem;
+        opacity: 0;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    #heroCarousel:hover .carousel-control-prev,
+    #heroCarousel:hover .carousel-control-next {
+        opacity: 0.95;
+    }
+    #heroCarousel .carousel-control-prev-icon,
+    #heroCarousel .carousel-control-next-icon {
+        filter: invert(1) grayscale(100);
+        width: 18px;
+        height: 18px;
+    }
+    body.dark-mode #heroCarousel .carousel-control-prev,
+    body.dark-mode #heroCarousel .carousel-control-next {
+        background: rgba(15, 23, 42, 0.88);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    body.dark-mode #heroCarousel .carousel-control-prev-icon,
+    body.dark-mode #heroCarousel .carousel-control-next-icon {
+        filter: invert(0);
+    }
+
+    /* ===================== LUXURY FLOATING CATEGORY DOCK ===================== */
+    .category-strip {
+        margin-top: -1.25rem;
+        margin-bottom: 2.75rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .category-dock {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(226, 232, 240, 0.95);
+        border-radius: 24px;
+        padding: 1.1rem 1rem;
+        box-shadow: 0 20px 45px -12px rgba(30, 95, 168, 0.14), 0 4px 16px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+    }
+
     .category-item {
         text-align: center;
         cursor: pointer;
-        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-        border-radius: 18px;
-        padding: 14px 10px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 16px;
+        padding: 10px 6px;
+        position: relative;
     }
 
     .category-item:hover {
-        background: #f1f5f9;
-        transform: translateY(-3px);
-        box-shadow: 0 12px 25px rgba(15,23,42,0.10);
+        background: rgba(30, 95, 168, 0.05);
+        transform: translateY(-4px);
     }
 
     .category-icon {
-        width: 56px;
-        height: 56px;
+        width: 58px;
+        height: 58px;
         border-radius: 18px;
-        margin: 0 auto 8px auto;
+        margin: 0 auto 9px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #ffffff;
-        background: linear-gradient(135deg, #1E5FA8, #5bab23);
-        font-size: 1.7rem;
-        box-shadow: 0 10px 20px rgba(30, 95, 168, 0.25);
+        font-size: 1.65rem;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .category-item:hover .category-icon {
+        transform: scale(1.08) translateY(-2px);
+    }
+
+    /* Distinctive High-Tech ISP Gradients */
+    .cat-icon-internet {
+        background: linear-gradient(135deg, #1E5FA8 0%, #2563eb 100%);
+        box-shadow: 0 10px 22px rgba(30, 95, 168, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+    .cat-icon-streaming {
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        box-shadow: 0 10px 22px rgba(124, 58, 237, 0.30), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+    .cat-icon-tv {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+        box-shadow: 0 10px 22px rgba(6, 182, 212, 0.30), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+    .cat-icon-promo {
+        background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+        box-shadow: 0 10px 22px rgba(245, 158, 11, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+    .cat-icon-speed {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        box-shadow: 0 10px 22px rgba(16, 185, 129, 0.30), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+    .cat-icon-support {
+        background: linear-gradient(135deg, #1E5FA8 0%, #4338ca 100%);
+        box-shadow: 0 10px 22px rgba(67, 56, 202, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+
+    /* Live Pulse Indicator for 24/7 Support */
+    .support-live-dot {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 11px;
+        height: 11px;
+        background: #10b981;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 8px #10b981;
+        animation: livePulseDot 2s infinite;
+    }
+
+    @keyframes livePulseDot {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
     .category-label,
     .category-item .category-label,
     a.text-decoration-none .category-label {
-        font-size: 0.92rem;
-        font-weight: 600;
-        color: #111827 !important;
-        transition: color .18s ease;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #334155 !important;
+        transition: color .2s ease;
+        letter-spacing: -0.01em;
     }
 
     .category-item:hover .category-label {
-        color: #000000 !important;
+        color: #1E5FA8 !important;
+    }
+
+    body.dark-mode .category-dock {
+        background: rgba(15, 23, 42, 0.88);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
     }
 
     body.dark-mode .category-item:hover {
-        background: #1e293b;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        background: rgba(56, 189, 248, 0.08);
     }
 
     body.dark-mode .category-label,
     body.dark-mode .category-item .category-label,
     body.dark-mode a.text-decoration-none .category-label {
-        color: #f8fafc !important;
+        color: #f1f5f9 !important;
+    }
+
+    body.dark-mode .category-item:hover .category-label {
+        color: #38bdf8 !important;
     }
 
     /* ===================== BANNER CARA BERLANGGANAN ===================== */
@@ -375,30 +503,12 @@
     /* ===================== PRICING SECTION ===================== */
     .pricing-section {
         padding-top: 2rem;
-        padding-bottom: 3rem;
+        padding-bottom: 2.5rem;
         position: relative;
-        overflow: hidden;
-        background: linear-gradient(
-            135deg,
-            #c5d5e6 0%,
-            #f7fbff 45%,
-            #dfefd8 100%
-        );
-        background-size: 200% 200%;
-        animation: sectionGradientFlow 16s ease infinite;
-        border-radius: 32px;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-    }
-
-    .pricing-section::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(circle at top left, rgba(255,255,255,0.45), transparent 55%),
-            radial-gradient(circle at bottom right, rgba(255,255,255,0.18), transparent 35%);
-        pointer-events: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .pricing-kicker {
@@ -1413,6 +1523,164 @@
             font-size: 1.2rem;
         }
     }
+
+    /* ===================== COMPANY LOCATION & CONTACT CARD ===================== */
+    .company-location-section {
+        margin-top: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .company-location-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 20px 45px -10px rgba(30, 95, 168, 0.10), 0 4px 16px rgba(0, 0, 0, 0.03);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .company-map-wrapper {
+        width: 100%;
+        height: 100%;
+        min-height: 380px;
+        position: relative;
+    }
+
+    .company-map-iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 380px;
+        border: none;
+        display: block;
+    }
+
+    .company-info-content {
+        padding: 2.75rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .company-info-title {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 0.65rem;
+        letter-spacing: -0.02em;
+    }
+
+    .company-info-desc {
+        color: #64748b;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .company-contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .company-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        color: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .company-contact-item:hover {
+        transform: translateX(4px);
+    }
+
+    .contact-item-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .icon-pin {
+        background: #eff6ff;
+        color: #1E5FA8;
+    }
+
+    .icon-phone {
+        background: #ecfdf5;
+        color: #059669;
+    }
+
+    .icon-mail {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    .contact-item-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #94a3b8;
+        margin-bottom: 0.2rem;
+    }
+
+    .contact-item-val {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1e293b;
+        line-height: 1.45;
+    }
+
+    /* Dark Mode */
+    body.dark-mode .company-location-card {
+        background: #0f172a;
+        border-color: #1f2937;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .company-info-title {
+        color: #f8fafc;
+    }
+
+    body.dark-mode .company-info-desc {
+        color: #94a3b8;
+    }
+
+    body.dark-mode .contact-item-val {
+        color: #f1f5f9;
+    }
+
+    body.dark-mode .icon-pin {
+        background: rgba(30, 95, 168, 0.2);
+        color: #38bdf8;
+    }
+
+    body.dark-mode .icon-phone {
+        background: rgba(5, 150, 105, 0.2);
+        color: #34d399;
+    }
+
+    body.dark-mode .icon-mail {
+        background: rgba(217, 119, 6, 0.2);
+        color: #fbbf24;
+    }
+
+    @media (max-width: 991.98px) {
+        .company-info-content {
+            padding: 2rem 1.5rem;
+        }
+        .company-map-wrapper,
+        .company-map-iframe {
+            min-height: 280px;
+        }
+    }
 </style>
 @endpush
 
@@ -1455,12 +1723,12 @@
 
 {{-- STRIP KATEGORI --}}
 <section class="category-strip mb-4">
-    <div class="container">
-        <div class="row g-3 justify-content-center">
+    <div class="category-dock">
+        <div class="row g-2 g-md-3 justify-content-center">
             <div class="col-4 col-md-2">
                 <a href="{{ route('public.packages', ['category' => 'internet_only']) }}" class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-router"></i></div>
+                        <div class="category-icon cat-icon-internet"><i class="bi bi-router"></i></div>
                         <div class="category-label">Internet</div>
                     </div>
                 </a>
@@ -1469,7 +1737,7 @@
             <div class="col-4 col-md-2">
                 <a href="{{ route('public.packages', ['category' => 'streaming']) }}" class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-play-btn-fill"></i></div>
+                        <div class="category-icon cat-icon-streaming"><i class="bi bi-play-btn-fill"></i></div>
                         <div class="category-label">Internet + Streaming</div>
                     </div>
                 </a>
@@ -1478,7 +1746,7 @@
             <div class="col-4 col-md-2">
                 <a href="{{ route('public.packages', ['category' => 'internet_tv']) }}" class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-tv-fill"></i></div>
+                        <div class="category-icon cat-icon-tv"><i class="bi bi-tv-fill"></i></div>
                         <div class="category-label">Internet + TV</div>
                     </div>
                 </a>
@@ -1487,7 +1755,7 @@
             <div class="col-4 col-md-2">
                 <a href="{{ route('public.packages', ['sort' => 'price_asc']) }}" class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-gift-fill"></i></div>
+                        <div class="category-icon cat-icon-promo"><i class="bi bi-gift-fill"></i></div>
                         <div class="category-label">Promo</div>
                     </div>
                 </a>
@@ -1496,7 +1764,7 @@
             <div class="col-4 col-md-2">
                 <a href="https://fast.com" target="_blank" class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-speedometer2"></i></div>
+                        <div class="category-icon cat-icon-speed"><i class="bi bi-speedometer2"></i></div>
                         <div class="category-label">Speed Test</div>
                     </div>
                 </a>
@@ -1508,7 +1776,10 @@
                    target="_blank"
                    class="text-decoration-none">
                     <div class="category-item">
-                        <div class="category-icon"><i class="bi bi-headset"></i></div>
+                        <div class="category-icon cat-icon-support">
+                            <i class="bi bi-headset"></i>
+                            <span class="support-live-dot" title="NOC Live 24/7"></span>
+                        </div>
                         <div class="category-label">Pengaduan 24/7</div>
                     </div>
                 </a>
@@ -1801,9 +2072,8 @@
 </section>
 
 {{-- PRICING SECTION --}}
-<section class="pricing-section">
-    <div class="container">
-        <div class="row g-4 align-items-start">
+<section class="pricing-section my-4">
+    <div class="row g-4 align-items-start">
             <div class="col-lg-4">
                 <div class="mb-3">
                     <div class="pricing-kicker">Paket &amp; Harga</div>
@@ -1867,31 +2137,10 @@
                             @endif
 
                             <div class="mt-auto">
-                                @if($package->whatsapp_order_url)
-                                    <a href="{{ $package->whatsapp_order_url }}"
-                                       target="_blank"
-                                       class="btn pricing-cta-btn w-100 {{ $isBest ? 'btn-light text-dark' : 'btn-primary text-white' }}">
-                                        {{ $isBest ? 'Berlangganan Sekarang' : 'Pilih Paket Ini' }}
-                                    </a>
-                                @else
-                                    @php
-                                        $waNumber = preg_replace('/[^0-9]/', '', $whatsApp ?? '');
-                                        $waLink = $waNumber
-                                            ? "https://wa.me/{$waNumber}?text=" . urlencode("Halo CS, saya ingin info paket {$package->name}")
-                                            : null;
-                                    @endphp
-
-                                    @if($waLink)
-                                        <a href="{{ $waLink }}" target="_blank"
-                                           class="btn btn-success pricing-cta-btn w-100">
-                                            Hubungi Customer Service
-                                        </a>
-                                    @else
-                                        <button class="btn btn-secondary pricing-cta-btn w-100" disabled>
-                                            WhatsApp CS belum diset
-                                        </button>
-                                    @endif
-                                @endif
+                                <a href="{{ route('public.order.step1', ['package' => $package->slug ?? $package->id]) }}"
+                                   class="btn pricing-cta-btn w-100 {{ $isBest ? 'btn-light text-dark' : 'btn-primary text-white' }}">
+                                    Pesan Sekarang
+                                </a>
 
                                 <div class="pricing-cta-secondary">
                                     *Syarat &amp; ketentuan berlaku
@@ -1906,7 +2155,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 {{-- REKOMENDASI PAKET (BINGUNG PILIH PAKET) --}}
@@ -2025,6 +2273,71 @@
                     </div>
                 </div>
             @endforelse
+        </div>
+    </div>
+{{-- INFORMASI PERUSAHAAN & LOKASI GOOGLE MAPS --}}
+<section class="company-location-section my-5">
+    <div class="company-location-card">
+        <div class="row g-0 align-items-stretch">
+            {{-- Kiri: Google Maps Lokasi --}}
+            <div class="col-lg-6">
+                <div class="company-map-wrapper">
+                    <iframe
+                        src="https://maps.google.com/maps?q={{ urlencode($contactAddress) }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        class="company-map-iframe"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Lokasi Kantor {{ $siteName }}">
+                    </iframe>
+                </div>
+            </div>
+
+            {{-- Kanan: Detail Informasi Kontak Perusahaan --}}
+            <div class="col-lg-6">
+                <div class="company-info-content">
+                    <h3 class="company-info-title">Kami Ada untuk Anda</h3>
+                    <p class="company-info-desc">
+                        Tim kami siap membantu menjawab pertanyaan Anda seputar produk dan layanan internet fiber. Silakan hubungi kami melalui kontak atau chat WhatsApp yang tersedia.
+                    </p>
+
+                    <div class="company-contact-list">
+                        <a href="https://maps.google.com/?q={{ urlencode($contactAddress) }}"
+                           target="_blank"
+                           class="company-contact-item text-decoration-none">
+                            <div class="contact-item-icon icon-pin">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div class="contact-item-text">
+                                <div class="contact-item-label">Alamat Kantor</div>
+                                <div class="contact-item-val">{{ $contactAddress }}</div>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/{{ $whatsApp }}?text=Halo%20{{ urlencode($siteName) }}%20saya%20ingin%20informasi%20layanan%20internet"
+                           target="_blank"
+                           class="company-contact-item text-decoration-none">
+                            <div class="contact-item-icon icon-phone">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="contact-item-text">
+                                <div class="contact-item-label">WhatsApp / Telepon</div>
+                                <div class="contact-item-val">+{{ $whatsApp }}</div>
+                            </div>
+                        </a>
+
+                        <a href="mailto:{{ $contactEmail }}" class="company-contact-item text-decoration-none">
+                            <div class="contact-item-icon icon-mail">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div class="contact-item-text">
+                                <div class="contact-item-label">Email Resmi</div>
+                                <div class="contact-item-val">{{ $contactEmail }}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
