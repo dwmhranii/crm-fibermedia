@@ -24,13 +24,28 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-        <!-- Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            <script src="https://cdn.tailwindcss.com"></script>
-            <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        @endif
+        <!-- Tailwind CSS (CDN - Standalone & Bulletproof untuk Server CPanel / Hosting) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            fibermedia: {
+                                50: '#f0f7ff',
+                                100: '#e0effe',
+                                500: '#1E5FA8',
+                                600: '#2575C0',
+                                700: '#174e8a',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <!-- Alpine.js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         <style>
             * {
@@ -61,8 +76,21 @@
                 width: 520px;
                 height: 520px;
                 background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, transparent 70%);
-                filter: blur(90px);
                 pointer-events: none;
+            }
+            /* Essential Pure CSS Fallbacks */
+            .btn-login-gradient {
+                background: linear-gradient(135deg, #1E5FA8 0%, #2575C0 100%) !important;
+                color: #ffffff !important;
+            }
+            .btn-login-gradient:hover {
+                box-shadow: 0 12px 28px rgba(30, 95, 168, 0.4) !important;
+                transform: translateY(-2px);
+            }
+            input:focus {
+                outline: none !important;
+                border-color: #1E5FA8 !important;
+                box-shadow: 0 0 0 3px rgba(30, 95, 168, 0.15) !important;
             }
         </style>
     </head>
