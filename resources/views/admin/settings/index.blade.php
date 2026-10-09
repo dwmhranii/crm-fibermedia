@@ -49,20 +49,82 @@
         background: #fff;
         box-shadow: 0 14px 40px rgba(15,23,42,.06);
     }
-    body.admin-body.dark .tab-card{
-        background: #0f172a;
-        border-color: #1f2937;
+    body.admin-body.dark .tab-card,
+    [data-bs-theme="dark"] .tab-card{
+        background: #0f172a !important;
+        border-color: #1f2937 !important;
         box-shadow: 0 18px 55px rgba(0,0,0,.35);
     }
+
+    .tab-card .list-group-item {
+        border: 1px solid transparent;
+        border-radius: 12px !important;
+        margin-bottom: 4px;
+        font-weight: 500;
+        padding: 10px 14px;
+        transition: all .15s ease;
+    }
+    body.admin-body:not(.dark) .tab-card .list-group-item {
+        color: #334155;
+        background: transparent;
+    }
+    body.admin-body:not(.dark) .tab-card .list-group-item:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+    }
+    body.admin-body:not(.dark) .tab-card .list-group-item.active {
+        background: #2563eb !important;
+        color: #ffffff !important;
+    }
+    body.admin-body.dark .tab-card .list-group-item,
+    [data-bs-theme="dark"] .tab-card .list-group-item {
+        background: transparent !important;
+        color: #94a3b8 !important;
+        border-color: transparent !important;
+    }
+    body.admin-body.dark .tab-card .list-group-item:hover,
+    [data-bs-theme="dark"] .tab-card .list-group-item:hover {
+        background: #1e293b !important;
+        color: #ffffff !important;
+    }
+    body.admin-body.dark .tab-card .list-group-item.active,
+    [data-bs-theme="dark"] .tab-card .list-group-item.active {
+        background: #2563eb !important;
+        color: #ffffff !important;
+    }
+
+    .settings-subcard {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+    }
+    body.admin-body.dark .settings-subcard,
+    [data-bs-theme="dark"] .settings-subcard {
+        background: #0b1220 !important;
+        border-color: #1f2937 !important;
+    }
+
+    .settings-notice-box {
+        background: rgba(14, 165, 233, 0.08);
+        border: 1px solid rgba(14, 165, 233, 0.25);
+        color: #0369a1;
+    }
+    body.admin-body.dark .settings-notice-box,
+    [data-bs-theme="dark"] .settings-notice-box {
+        background: rgba(14, 165, 233, 0.12) !important;
+        border-color: rgba(14, 165, 233, 0.3) !important;
+        color: #7dd3fc !important;
+    }
+
     .preview-box{
         border-radius: 16px;
         border: 1px dashed #cbd5e1;
         background: rgba(2,6,23,.02);
         padding: 12px;
     }
-    body.admin-body.dark .preview-box{
-        border-color: #334155;
-        background: rgba(255,255,255,.04);
+    body.admin-body.dark .preview-box,
+    [data-bs-theme="dark"] .preview-box{
+        border-color: #334155 !important;
+        background: rgba(255,255,255,.04) !important;
     }
     .mini-img{
         max-height: 46px;
@@ -73,9 +135,10 @@
         padding: 6px;
         border: 1px solid #e5e7eb;
     }
-    body.admin-body.dark .mini-img{
-        background: #0b1220;
-        border-color: #1f2937;
+    body.admin-body.dark .mini-img,
+    [data-bs-theme="dark"] .mini-img{
+        background: #0b1220 !important;
+        border-color: #1f2937 !important;
     }
 </style>
 @endpush
@@ -217,9 +280,9 @@
                             @endif
                         </div>
 
-                        <div class="alert alert-light border d-flex align-items-center gap-2 mb-3 py-2 px-3 rounded-3">
-                            <i class="bi bi-info-circle-fill text-primary fs-5"></i>
-                            <div class="small text-muted">
+                        <div class="settings-notice-box d-flex align-items-center gap-2 mb-3 py-2 px-3 rounded-3">
+                            <i class="bi bi-info-circle-fill fs-5"></i>
+                            <div class="small">
                                 <strong>Catatan:</strong> Gambar background header diunggah melalui menu <strong>Banner</strong>. Teks judul, tagline, deskripsi, dan tombol aksi diatur secara terpusat di sini agar konsisten di setiap slide.
                             </div>
                         </div>
@@ -277,7 +340,7 @@
                             </div>
 
                             <div class="col-12">
-                                <div class="card border rounded-3 p-3 bg-light">
+                                <div class="settings-subcard rounded-3 p-3">
                                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                                         <div>
                                             <label class="form-label fw-bold mb-0 d-flex align-items-center gap-2" for="switchHeroVideo">

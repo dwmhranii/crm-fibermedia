@@ -110,9 +110,16 @@
         transform: translateY(-2px);
         box-shadow: 0 12px 28px rgba(15,23,42,.10);
     }
-    body.admin-body.dark .quick-link{
+    body.admin-body.dark .quick-link,
+    [data-bs-theme="dark"] .quick-link{
         background: #0b1220;
         border-color: #1f2937;
+        color: #e5e7eb;
+    }
+    body.admin-body.dark .quick-link:hover,
+    [data-bs-theme="dark"] .quick-link:hover{
+        background: #1e293b;
+        color: #ffffff;
     }
 </style>
 @endpush
