@@ -42,6 +42,11 @@
                         </div>
                         <div>
                             <div class="fw-bold">{{ $b->title }}</div>
+                            @if($b->subtitle)
+                                <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill mb-1" style="font-size: 0.72rem;">
+                                    {{ $b->subtitle }}
+                                </span>
+                            @endif
                             <div class="text-muted small">
                                 Sort: {{ $b->sort_order ?? 0 }}
                                 @if($b->cta_text) • CTA: {{ $b->cta_text }} @endif

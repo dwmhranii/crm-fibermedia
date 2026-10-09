@@ -216,61 +216,271 @@
         }
     }
 
-    /* ===================== HERO CAROUSEL LUXURY STYLING ===================== */
-    #heroCarousel {
+    /* ===================== HERO CAROUSEL HEADER BACKGROUND ===================== */
+    .hero-header-wrapper {
         position: relative;
-    }
-    #heroCarousel .carousel-inner {
-        border-radius: 28px !important;
-        box-shadow: 0 24px 60px -12px rgba(30, 95, 168, 0.22), 0 8px 24px -4px rgba(0, 0, 0, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.9);
+        width: 100%;
+        min-height: 580px;
+        display: flex;
+        align-items: center;
+        background-color: #0b1324;
         overflow: hidden;
     }
-    body.dark-mode #heroCarousel .carousel-inner {
-        box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7);
-        border-color: rgba(255, 255, 255, 0.08);
+    @media (min-width: 992px) {
+        .hero-header-wrapper {
+            min-height: 660px;
+        }
     }
-    #heroCarousel .carousel-control-prev,
-    #heroCarousel .carousel-control-next {
-        width: 46px;
-        height: 46px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
+    .hero-bg-carousel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .hero-bg-carousel .carousel-inner,
+    .hero-bg-carousel .carousel-item {
+        width: 100%;
+        height: 100%;
+    }
+    .hero-bg-cover-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform: scale(1.02);
+        transition: transform 6s ease;
+    }
+    .carousel-item.active .hero-bg-cover-img {
+        transform: scale(1.06);
+    }
+    /* Dark gradient overlay for perfect contrast & readability */
+    .hero-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(95deg, rgba(8, 15, 30, 0.90) 0%, rgba(11, 20, 38, 0.74) 50%, rgba(15, 23, 42, 0.45) 100%);
+        z-index: 2;
+    }
+    body.dark-mode .hero-bg-overlay {
+        background: linear-gradient(95deg, rgba(3, 7, 18, 0.94) 0%, rgba(8, 15, 30, 0.82) 50%, rgba(15, 23, 42, 0.55) 100%);
+    }
+
+    /* Content positioned over BG */
+    .hero-content-over-bg {
+        position: relative;
+        z-index: 3;
+        max-width: 780px;
+    }
+
+    /* Pill Badge */
+    .hero-bg-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        padding: 7px 18px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        margin-bottom: 1.35rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    .hero-bg-badge .badge-icon {
+        color: #38bdf8;
+    }
+
+    /* Title */
+    .hero-bg-title {
+        font-size: clamp(2.2rem, 4.2vw, 3.85rem);
+        font-weight: 900;
+        line-height: 1.14;
+        color: #ffffff;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: -0.015em;
+        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Description */
+    .hero-bg-desc {
+        font-size: 1.12rem;
+        line-height: 1.7;
+        color: rgba(241, 245, 249, 0.92);
+        margin-bottom: 2.25rem;
+        max-width: 640px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Buttons */
+    .btn-hero-cyan {
+        background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 0.98rem;
+        border-radius: 12px;
+        padding: 0.85rem 1.85rem;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        box-shadow: 0 8px 24px -4px rgba(14, 165, 233, 0.45);
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+    .btn-hero-cyan:hover {
+        background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px -4px rgba(14, 165, 233, 0.6);
+        color: #ffffff !important;
+    }
+
+    .btn-hero-glass {
+        background: rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 0.98rem;
+        border-radius: 12px;
+        padding: 0.85rem 1.65rem;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .btn-hero-glass:hover {
+        background: rgba(255, 255, 255, 0.24);
+        border-color: rgba(255, 255, 255, 0.48);
+        transform: translateY(-2px);
+        color: #ffffff !important;
+    }
+
+    /* Wave Curve at Bottom of Hero (Matching Screenshot 2) */
+    .hero-bottom-wave {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        z-index: 4;
+        pointer-events: none;
+    }
+    .hero-bottom-wave svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 60px;
+    }
+    @media (min-width: 992px) {
+        .hero-bottom-wave svg {
+            height: 90px;
+        }
+    }
+    .hero-bottom-wave svg path {
+        fill: #f8fafc;
+        transition: fill 0.25s ease;
+    }
+    body.dark-mode .hero-bottom-wave svg path {
+        fill: #0b1020;
+    }
+
+    /* Indicators & Controls */
+    .hero-indicators-bar {
+        position: absolute;
+        bottom: 75px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+    .hero-indicators-bar [data-bs-target] {
+        width: 30px;
+        height: 6px;
+        border-radius: 999px;
+        background-color: rgba(255, 255, 255, 0.35);
+        border: none;
+        transition: all 0.3s ease;
+        opacity: 0.8;
+    }
+    .hero-indicators-bar [data-bs-target].active {
+        width: 55px;
+        background-color: #38bdf8;
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+        opacity: 1;
+    }
+
+    .hero-foreground-container {
+        position: relative;
+        z-index: 3;
+        padding-top: 5rem;
+        padding-bottom: 7rem;
+        width: 100%;
+    }
+    @media (min-width: 992px) {
+        .hero-foreground-container {
+            padding-top: 6.5rem;
+            padding-bottom: 8rem;
+        }
+    }
+
+    /* Nav arrows */
+    #heroBgCarousel .carousel-control-prev,
+    #heroBgCarousel .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-radius: 50%;
         top: 50%;
         transform: translateY(-50%);
-        margin: 0 1.25rem;
+        margin: 0 1.5rem;
         opacity: 0;
         transition: all 0.25s ease;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: 5;
     }
-    #heroCarousel:hover .carousel-control-prev,
-    #heroCarousel:hover .carousel-control-next {
+    .hero-header-wrapper:hover #heroBgCarousel .carousel-control-prev,
+    .hero-header-wrapper:hover #heroBgCarousel .carousel-control-next {
         opacity: 0.95;
     }
-    #heroCarousel .carousel-control-prev-icon,
-    #heroCarousel .carousel-control-next-icon {
-        filter: invert(1) grayscale(100);
-        width: 18px;
-        height: 18px;
-    }
-    body.dark-mode #heroCarousel .carousel-control-prev,
-    body.dark-mode #heroCarousel .carousel-control-next {
-        background: rgba(15, 23, 42, 0.88);
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    body.dark-mode #heroCarousel .carousel-control-prev-icon,
-    body.dark-mode #heroCarousel .carousel-control-next-icon {
+    #heroBgCarousel .carousel-control-prev-icon,
+    #heroBgCarousel .carousel-control-next-icon {
         filter: invert(0);
+        width: 20px;
+        height: 20px;
     }
 
     /* ===================== LUXURY FLOATING CATEGORY DOCK ===================== */
     .category-strip {
-        margin-top: -1.25rem;
+        margin-top: -2.25rem;
         margin-bottom: 2.75rem;
         position: relative;
         z-index: 10;
+    }
+    @media (max-width: 767.98px) {
+        .category-strip {
+            margin-top: -0.75rem;
+            margin-bottom: 2rem;
+        }
     }
 
     .category-dock {
@@ -1684,42 +1894,133 @@
 </style>
 @endpush
 
-@section('content')
+@section('hero')
+{{-- FULL SCREEN BANNER CAROUSEL SEBAGAI BACKGROUND DENGAN KONTEN DARI SITE SETTING --}}
+<div class="hero-header-wrapper">
 
-{{-- SLIDER BANNER (dari DB) --}}
-<div id="heroCarousel" class="carousel slide mb-5"
-     data-bs-ride="carousel" data-bs-interval="5000">
-
-    <div class="carousel-inner rounded-4 shadow">
-
-        @forelse($banners as $banner)
-            @php
-                $active = $loop->first ? 'active' : '';
-                $img = $banner->image_desktop
-                    ? asset('storage/' . ltrim($banner->image_desktop, '/'))
-                    : asset('assets/3.png');
-            @endphp
-
-            <div class="carousel-item {{ $active }}">
-                <img src="{{ $img }}" class="d-block w-100" alt="{{ $banner->title ?? 'Banner' }}">
+    {{-- 1. BACKGROUND SLIDER CAROUSEL (DARI BANNER CMS) --}}
+    <div id="heroBgCarousel" class="carousel slide carousel-fade hero-bg-carousel" data-bs-ride="carousel" data-bs-interval="6500">
+        {{-- Indicators --}}
+        @if($banners->count() > 1)
+            <div class="carousel-indicators hero-indicators-bar">
+                @foreach($banners as $i => $b)
+                    <button type="button" data-bs-target="#heroBgCarousel" data-bs-slide-to="{{ $i }}" class="{{ $i === 0 ? 'active' : '' }}" aria-current="{{ $i === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $i + 1 }}"></button>
+                @endforeach
             </div>
-        @empty
-            <div class="carousel-item active">
-                <img src="{{ asset('assets/3.png') }}" class="d-block w-100" alt="Banner Default">
-            </div>
-        @endforelse
+        @endif
 
+        <div class="carousel-inner h-100">
+            @forelse($banners as $index => $banner)
+                @php
+                    $imgDesktop = $banner->image_desktop
+                        ? asset('storage/' . ltrim($banner->image_desktop, '/'))
+                        : asset('assets/hero_fiber_stage.jpg');
+                @endphp
+                <div class="carousel-item h-100 {{ $index === 0 ? 'active' : '' }}">
+                    <img src="{{ $imgDesktop }}" class="hero-bg-cover-img" alt="{{ $banner->title ?? 'Banner Fibermedia' }}">
+                </div>
+            @empty
+                <div class="carousel-item h-100 active">
+                    <img src="{{ asset('assets/hero_fiber_stage.jpg') }}" class="hero-bg-cover-img" alt="Banner Fibermedia">
+                </div>
+            @endforelse
+        </div>
+
+        @if($banners->count() > 1)
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroBgCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroBgCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        @endif
     </div>
 
-    @if($banners->count() > 1)
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    @endif
+    {{-- 2. OVERLAY GELAP ELEGANT AGAR TEKS TAJAM TERBACA --}}
+    <div class="hero-bg-overlay"></div>
+
+    {{-- 3. KONTEN FOREGROUND DARI SITE SETTING (KONSISTEN DI SETIAP SLIDE) --}}
+    <div class="container hero-foreground-container">
+        <div class="row">
+            <div class="col-lg-9 col-xl-8">
+                <div class="hero-content-over-bg text-start">
+                    {{-- Tagline Badge --}}
+                    @if(!empty($settings['hero_badge']))
+                        <div class="hero-bg-badge">
+                            <i class="bi bi-broadcast-pin badge-icon"></i>
+                            <span>{{ $settings['hero_badge'] }}</span>
+                        </div>
+                    @endif
+
+                    {{-- Big Bold Title (Headline H1) --}}
+                    <h1 class="hero-bg-title">
+                        {{ $settings['hero_title'] ?? 'INTERNET CEPAT UNTUK AKTIVITAS TANPA BATAS' }}
+                    </h1>
+
+                    {{-- Subtitle / Description --}}
+                    <p class="hero-bg-desc">
+                        {{ $settings['hero_description'] ?? 'Koneksi fiber optik stabil berkecepatan tinggi untuk mendukung kebutuhan rumah, bisnis, dan masa depan digital Anda bersama Fibermedia.' }}
+                    </p>
+
+                    {{-- Action Buttons --}}
+                    <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
+                        @if(!empty($settings['hero_cta_text']))
+                            <a href="{{ !empty($settings['hero_cta_url']) ? $settings['hero_cta_url'] : route('public.packages') }}"
+                               class="btn-hero-cyan">
+                                <i class="bi bi-router-fill"></i>
+                                <span>{{ $settings['hero_cta_text'] }}</span>
+                            </a>
+                        @endif
+
+                        @if(!empty($settings['hero_cta_2_text']))
+                            <a href="{{ !empty($settings['hero_cta_2_url']) ? $settings['hero_cta_2_url'] : route('public.packages') }}"
+                               class="btn-hero-glass">
+                                <i class="bi bi-lightning-charge-fill text-warning"></i>
+                                <span>{{ $settings['hero_cta_2_text'] }}</span>
+                            </a>
+                        @endif
+
+                        <button type="button" class="btn-hero-glass" data-bs-toggle="modal" data-bs-target="#heroVideoModal">
+                            <i class="bi bi-play-circle-fill text-info"></i>
+                            <span>Video Profil</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- 4. CURVED WAVE DIVIDER DI BAGIAN BAWAH HERO (PERSIS REFERENSI) --}}
+    <div class="hero-bottom-wave">
+        <svg viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+            <path d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,64C672,53,768,43,864,37.3C960,32,1056,32,1152,42.7C1248,53,1344,75,1392,85.3L1440,96L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
+        </svg>
+    </div>
 </div>
+
+{{-- MODAL VIDEO PROMO FIBERMEDIA --}}
+<div class="modal fade" id="heroVideoModal" tabindex="-1" aria-labelledby="heroVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+            <div class="modal-header border-0 bg-dark text-white px-4 py-3">
+                <h5 class="modal-title fs-6 fw-bold" id="heroVideoModalLabel">
+                    <i class="bi bi-play-circle-fill text-primary me-2"></i> Mengenal Layanan Internet {{ $siteName }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0 bg-black">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ !empty($settings['hero_video_url']) ? $settings['hero_video_url'] : 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0' }}" title="{{ $siteName }} Video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('content')
 
 {{-- STRIP KATEGORI --}}
 <section class="category-strip mb-4">

@@ -19,6 +19,16 @@ class SettingController extends Controller
             'logo'      => ['type' => 'image', 'label' => 'Logo'],
             'favicon'   => ['type' => 'image', 'label' => 'Favicon'],
         ],
+        'hero' => [
+            'hero_badge'       => ['type' => 'text', 'label' => 'Tagline / Badge Atas'],
+            'hero_title'       => ['type' => 'text', 'label' => 'Judul Utama (Headline H1)'],
+            'hero_description' => ['type' => 'textarea', 'label' => 'Deskripsi Ringkas'],
+            'hero_cta_text'    => ['type' => 'text', 'label' => 'Teks Tombol Utama'],
+            'hero_cta_url'     => ['type' => 'text', 'label' => 'Link Tombol Utama'],
+            'hero_cta_2_text'  => ['type' => 'text', 'label' => 'Teks Tombol Kedua'],
+            'hero_cta_2_url'   => ['type' => 'text', 'label' => 'Link Tombol Kedua'],
+            'hero_video_url'   => ['type' => 'text', 'label' => 'Link Video Profil (Opsional)'],
+        ],
         'contact' => [
             'contact_whatsapp' => ['type' => 'text', 'label' => 'WhatsApp'],
             'contact_email'    => ['type' => 'text', 'label' => 'Email'],
@@ -75,6 +85,15 @@ class SettingController extends Controller
         $rules = [
             'site_name' => ['nullable', 'string', 'max:191'],
 
+            'hero_badge'       => ['nullable', 'string', 'max:191'],
+            'hero_title'       => ['nullable', 'string', 'max:255'],
+            'hero_description' => ['nullable', 'string', 'max:1000'],
+            'hero_cta_text'    => ['nullable', 'string', 'max:100'],
+            'hero_cta_url'     => ['nullable', 'string', 'max:255'],
+            'hero_cta_2_text'  => ['nullable', 'string', 'max:100'],
+            'hero_cta_2_url'   => ['nullable', 'string', 'max:255'],
+            'hero_video_url'   => ['nullable', 'string', 'max:255'],
+
             'contact_whatsapp' => ['nullable', 'string', 'max:50'],
             'contact_email'    => ['nullable', 'email', 'max:191'],
             'contact_address'  => ['nullable', 'string', 'max:255'],
@@ -107,6 +126,16 @@ class SettingController extends Controller
         // TEXT SETTINGS
         $this->saveText('site_name', $data['site_name'] ?? null, 'general');
 
+        // HERO HEADER SETTINGS
+        $this->saveText('hero_badge', $data['hero_badge'] ?? null, 'hero');
+        $this->saveText('hero_title', $data['hero_title'] ?? null, 'hero');
+        $this->saveText('hero_description', $data['hero_description'] ?? null, 'hero');
+        $this->saveText('hero_cta_text', $data['hero_cta_text'] ?? null, 'hero');
+        $this->saveText('hero_cta_url', $data['hero_cta_url'] ?? null, 'hero');
+        $this->saveText('hero_cta_2_text', $data['hero_cta_2_text'] ?? null, 'hero');
+        $this->saveText('hero_cta_2_url', $data['hero_cta_2_url'] ?? null, 'hero');
+        $this->saveText('hero_video_url', $data['hero_video_url'] ?? null, 'hero');
+
         $this->saveText('contact_whatsapp', $data['contact_whatsapp'] ?? null, 'contact');
         $this->saveText('contact_email', $data['contact_email'] ?? null, 'contact');
         $this->saveText('contact_address', $data['contact_address'] ?? null, 'contact');
@@ -135,6 +164,7 @@ class SettingController extends Controller
         $this->saveUpload($request, 'og_image', 'seo');
 
         // CLEAR CACHE
+        SiteSetting::clearCache();
         Cache::forget('fibermediaplay-cache-site_settings.all');
 
         return back()->with('success', 'Settings berhasil disimpan.');

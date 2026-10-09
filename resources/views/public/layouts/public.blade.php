@@ -634,8 +634,11 @@
         </div>
     </nav>
 
+    {{-- HERO / BANNER FULL SCREEN (JIKA ADA) --}}
+    @yield('hero')
+
     {{-- KONTEN --}}
-    <main class="py-4">
+    <main class="{{ request()->routeIs('public.home') ? 'pt-0 pb-4' : 'py-4' }}">
         <div class="container">
             @yield('content')
         </div>

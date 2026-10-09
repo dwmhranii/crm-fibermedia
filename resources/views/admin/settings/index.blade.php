@@ -105,6 +105,11 @@
                     </button>
 
                     <button class="list-group-item list-group-item-action"
+                            type="button" data-bs-toggle="tab" data-bs-target="#tab-hero">
+                        <i class="bi bi-display me-1"></i> Hero Header
+                    </button>
+
+                    <button class="list-group-item list-group-item-action"
                             type="button" data-bs-toggle="tab" data-bs-target="#tab-contact">
                         <i class="bi bi-telephone me-1"></i> Contact
                     </button>
@@ -194,6 +199,89 @@
                                 <label class="form-label fw-semibold">Favicon (upload)</label>
                                 <input type="file" name="favicon" class="form-control" accept="image/*" {{ $disabled }}>
                                 <div class="text-muted small mt-1">Disarankan PNG 32x32 / 48x48.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- HERO HEADER --}}
+                    <div class="tab-pane fade" id="tab-hero">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                            <div>
+                                <div class="fw-bold fs-5">Hero Header Website</div>
+                                <div class="text-muted small">Teks & judul utama yang tampil di atas background banner carousel di beranda</div>
+                            </div>
+                            @if($isSuper)
+                                <span class="badge text-bg-success">Editable</span>
+                            @else
+                                <span class="badge text-bg-secondary">Read-only</span>
+                            @endif
+                        </div>
+
+                        <div class="alert alert-light border d-flex align-items-center gap-2 mb-3 py-2 px-3 rounded-3">
+                            <i class="bi bi-info-circle-fill text-primary fs-5"></i>
+                            <div class="small text-muted">
+                                <strong>Catatan:</strong> Gambar background header diunggah melalui menu <strong>Banner</strong>. Teks judul, tagline, deskripsi, dan tombol aksi diatur secara terpusat di sini agar konsisten di setiap slide.
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Tagline / Badge Atas</label>
+                                <input type="text" name="hero_badge" class="form-control"
+                                       value="{{ $val('hero_badge', 'PT FIBERMEDIA LINKTEL AKSES') }}"
+                                       placeholder="Contoh: PT FIBERMEDIA LINKTEL AKSES" {{ $disabled }}>
+                                <div class="text-muted small mt-1">Badge kapsul kecil di atas judul utama.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Judul Utama / Headline (H1) <span class="text-danger">*</span></label>
+                                <input type="text" name="hero_title" class="form-control"
+                                       value="{{ $val('hero_title', 'INTERNET CEPAT UNTUK AKTIVITAS TANPA BATAS') }}"
+                                       placeholder="Contoh: INTERNET CEPAT UNTUK AKTIVITAS TANPA BATAS" {{ $disabled }}>
+                                <div class="text-muted small mt-1">Teks judul besar utama di header awal website.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Deskripsi / Paragraf Singkat</label>
+                                <textarea name="hero_description" class="form-control" rows="3" {{ $disabled }}
+                                          placeholder="Koneksi fiber optik stabil berkecepatan tinggi untuk mendukung kebutuhan rumah, bisnis, dan masa depan digital Anda bersama Fibermedia.">{{ $val('hero_description', 'Koneksi fiber optik stabil berkecepatan tinggi untuk mendukung kebutuhan rumah, bisnis, dan masa depan digital Anda bersama Fibermedia.') }}</textarea>
+                                <div class="text-muted small mt-1">Penjelasan ringkas tepat di bawah judul utama.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Teks Tombol Utama (CTA 1)</label>
+                                <input type="text" name="hero_cta_text" class="form-control"
+                                       value="{{ $val('hero_cta_text', 'Lihat Paket') }}"
+                                       placeholder="Contoh: Lihat Paket" {{ $disabled }}>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Link Target Tombol Utama (CTA 1 URL)</label>
+                                <input type="text" name="hero_cta_url" class="form-control"
+                                       value="{{ $val('hero_cta_url', '/paket') }}"
+                                       placeholder="Contoh: /paket" {{ $disabled }}>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Teks Tombol Kedua (CTA 2)</label>
+                                <input type="text" name="hero_cta_2_text" class="form-control"
+                                       value="{{ $val('hero_cta_2_text', 'Daftar Sambungan Baru') }}"
+                                       placeholder="Contoh: Daftar Sambungan Baru" {{ $disabled }}>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Link Target Tombol Kedua (CTA 2 URL)</label>
+                                <input type="text" name="hero_cta_2_url" class="form-control"
+                                       value="{{ $val('hero_cta_2_url', '/paket') }}"
+                                       placeholder="Contoh: /paket atau link pendaftaran" {{ $disabled }}>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Link Video Profil (Opsional)</label>
+                                <input type="url" name="hero_video_url" class="form-control"
+                                       value="{{ $val('hero_video_url', '') }}"
+                                       placeholder="https://www.youtube.com/embed/..." {{ $disabled }}>
+                                <div class="text-muted small mt-1">Tautan video pop-up saat tombol 'Video Profil' ditekan. Kosongkan jika memakai video profil standar.</div>
                             </div>
                         </div>
                     </div>
