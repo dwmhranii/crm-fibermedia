@@ -47,16 +47,12 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         View::composer('public.*', function ($view) {
-                $settings = Cache::rememberForever('fibermediaplay-cache-site_settings.all', function () {
-                    return SiteSetting::allKeyValue();
-                });
+            $settings = SiteSetting::allKeyValue();
 
-                $view->with('settings', $settings);
-
-                // optional: biar layout kamu tetap bisa pakai $siteName / $whatsApp tanpa ubah banyak
-                $view->with('siteName', $settings['site_name'] ?? config('app.name', 'FibermediaPlay'));
-                $view->with('whatsApp', $settings['contact_whatsapp'] ?? null);
-                $view->with('faviconPath', $settings['favicon'] ?? null);
-            });
+            $view->with('settings', $settings);
+            $view->with('siteName', $settings['site_name'] ?? config('app.name', 'FibermediaPlay'));
+            $view->with('whatsApp', $settings['contact_whatsapp'] ?? null);
+            $view->with('faviconPath', $settings['favicon'] ?? null);
+        });
     }
 }

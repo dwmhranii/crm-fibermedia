@@ -21,6 +21,7 @@ class SiteSetting extends Model
     public static function clearCache(): void
     {
         Cache::forget(static::cacheKey());
+        Cache::forget('fibermediaplay-cache-site_settings.all');
     }
 
     public static function allKeyValue(): array

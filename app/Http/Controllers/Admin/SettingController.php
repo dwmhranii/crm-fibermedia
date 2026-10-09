@@ -27,6 +27,7 @@ class SettingController extends Controller
             'hero_cta_url'     => ['type' => 'text', 'label' => 'Link Tombol Utama'],
             'hero_cta_2_text'  => ['type' => 'text', 'label' => 'Teks Tombol Kedua'],
             'hero_cta_2_url'   => ['type' => 'text', 'label' => 'Link Tombol Kedua'],
+            'hero_video_enabled' => ['type' => 'boolean', 'label' => 'Aktifkan Tombol Video Profil'],
             'hero_video_url'   => ['type' => 'text', 'label' => 'Link Video Profil (Opsional)'],
         ],
         'contact' => [
@@ -92,6 +93,7 @@ class SettingController extends Controller
             'hero_cta_url'     => ['nullable', 'string', 'max:255'],
             'hero_cta_2_text'  => ['nullable', 'string', 'max:100'],
             'hero_cta_2_url'   => ['nullable', 'string', 'max:255'],
+            'hero_video_enabled' => ['nullable', 'boolean'],
             'hero_video_url'   => ['nullable', 'string', 'max:255'],
 
             'contact_whatsapp' => ['nullable', 'string', 'max:50'],
@@ -134,6 +136,7 @@ class SettingController extends Controller
         $this->saveText('hero_cta_url', $data['hero_cta_url'] ?? null, 'hero');
         $this->saveText('hero_cta_2_text', $data['hero_cta_2_text'] ?? null, 'hero');
         $this->saveText('hero_cta_2_url', $data['hero_cta_2_url'] ?? null, 'hero');
+        $this->saveText('hero_video_enabled', $request->boolean('hero_video_enabled') ? '1' : '0', 'hero');
         $this->saveText('hero_video_url', $data['hero_video_url'] ?? null, 'hero');
 
         $this->saveText('contact_whatsapp', $data['contact_whatsapp'] ?? null, 'contact');

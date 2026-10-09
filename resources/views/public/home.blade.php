@@ -1947,10 +1947,18 @@
             <div class="col-lg-9 col-xl-8">
                 <div class="hero-content-over-bg text-start">
                     {{-- Tagline Badge --}}
-                    @if(!empty($settings['hero_badge']))
+                    @php
+                        $heroBadge = !empty($settings['hero_badge']) ? $settings['hero_badge'] : 'PT FIBERMEDIA LINKTEL AKSES';
+                        $heroCtaText = !empty($settings['hero_cta_text']) ? $settings['hero_cta_text'] : 'Lihat Paket';
+                        $heroCtaUrl = !empty($settings['hero_cta_url']) ? $settings['hero_cta_url'] : route('public.packages');
+                        $heroCta2Text = !empty($settings['hero_cta_2_text']) ? $settings['hero_cta_2_text'] : 'Daftar Sambungan Baru';
+                        $heroCta2Url = !empty($settings['hero_cta_2_url']) ? $settings['hero_cta_2_url'] : route('public.packages');
+                    @endphp
+
+                    @if($heroBadge)
                         <div class="hero-bg-badge">
                             <i class="bi bi-broadcast-pin badge-icon"></i>
-                            <span>{{ $settings['hero_badge'] }}</span>
+                            <span>{{ $heroBadge }}</span>
                         </div>
                     @endif
 
@@ -1966,26 +1974,30 @@
 
                     {{-- Action Buttons --}}
                     <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
-                        @if(!empty($settings['hero_cta_text']))
-                            <a href="{{ !empty($settings['hero_cta_url']) ? $settings['hero_cta_url'] : route('public.packages') }}"
-                               class="btn-hero-cyan">
+                        @if($heroCtaText)
+                            <a href="{{ $heroCtaUrl }}" class="btn-hero-cyan">
                                 <i class="bi bi-router-fill"></i>
-                                <span>{{ $settings['hero_cta_text'] }}</span>
+                                <span>{{ $heroCtaText }}</span>
                             </a>
                         @endif
 
-                        @if(!empty($settings['hero_cta_2_text']))
-                            <a href="{{ !empty($settings['hero_cta_2_url']) ? $settings['hero_cta_2_url'] : route('public.packages') }}"
-                               class="btn-hero-glass">
+                        @if($heroCta2Text)
+                            <a href="{{ $heroCta2Url }}" class="btn-hero-glass">
                                 <i class="bi bi-lightning-charge-fill text-warning"></i>
-                                <span>{{ $settings['hero_cta_2_text'] }}</span>
+                                <span>{{ $heroCta2Text }}</span>
                             </a>
                         @endif
 
-                        <button type="button" class="btn-hero-glass" data-bs-toggle="modal" data-bs-target="#heroVideoModal">
-                            <i class="bi bi-play-circle-fill text-info"></i>
-                            <span>Video Profil</span>
-                        </button>
+                        @php
+                            $showHeroVideo = (string)($settings['hero_video_enabled'] ?? '1') === '1';
+                        @endphp
+
+                        @if($showHeroVideo)
+                            <button type="button" class="btn-hero-glass" data-bs-toggle="modal" data-bs-target="#heroVideoModal">
+                                <i class="bi bi-play-circle-fill text-info"></i>
+                                <span>Video Profil</span>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -2000,24 +2012,26 @@
     </div>
 </div>
 
-{{-- MODAL VIDEO PROMO FIBERMEDIA --}}
-<div class="modal fade" id="heroVideoModal" tabindex="-1" aria-labelledby="heroVideoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-            <div class="modal-header border-0 bg-dark text-white px-4 py-3">
-                <h5 class="modal-title fs-6 fw-bold" id="heroVideoModalLabel">
-                    <i class="bi bi-play-circle-fill text-primary me-2"></i> Mengenal Layanan Internet {{ $siteName }}
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-0 bg-black">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ !empty($settings['hero_video_url']) ? $settings['hero_video_url'] : 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0' }}" title="{{ $siteName }} Video" allowfullscreen></iframe>
+@if($showHeroVideo)
+    {{-- MODAL VIDEO PROMO FIBERMEDIA --}}
+    <div class="modal fade" id="heroVideoModal" tabindex="-1" aria-labelledby="heroVideoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+                <div class="modal-header border-0 bg-dark text-white px-4 py-3">
+                    <h5 class="modal-title fs-6 fw-bold" id="heroVideoModalLabel">
+                        <i class="bi bi-play-circle-fill text-primary me-2"></i> Mengenal Layanan Internet {{ $siteName }}
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 bg-black">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ !empty($settings['hero_video_url']) ? $settings['hero_video_url'] : 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0' }}" title="{{ $siteName }} Video" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 @endsection
 
 @section('content')

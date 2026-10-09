@@ -277,11 +277,31 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold">Link Video Profil (Opsional)</label>
-                                <input type="url" name="hero_video_url" class="form-control"
-                                       value="{{ $val('hero_video_url', '') }}"
-                                       placeholder="https://www.youtube.com/embed/..." {{ $disabled }}>
-                                <div class="text-muted small mt-1">Tautan video pop-up saat tombol 'Video Profil' ditekan. Kosongkan jika memakai video profil standar.</div>
+                                <div class="card border rounded-3 p-3 bg-light">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                        <div>
+                                            <label class="form-label fw-bold mb-0 d-flex align-items-center gap-2" for="switchHeroVideo">
+                                                <i class="bi bi-play-circle-fill text-info fs-5"></i>
+                                                Tombol Video Profil
+                                            </label>
+                                            <div class="text-muted small">Aktifkan atau matikan (On/Off) tombol 'Video Profil' pada header beranda.</div>
+                                        </div>
+                                        <div class="form-check form-switch fs-4 mb-0">
+                                            <input class="form-check-input" type="checkbox" name="hero_video_enabled" value="1" id="switchHeroVideo"
+                                                   @checked((string)$val('hero_video_enabled', '1') === '1') {{ $disabled }}>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 pt-2 border-top">
+                                        <label class="form-label fw-semibold small">Link Video Profil (Embed YouTube / URL Video)</label>
+                                        <input type="url" name="hero_video_url" class="form-control"
+                                               value="{{ $val('hero_video_url', '') }}"
+                                               placeholder="https://www.youtube.com/embed/..." {{ $disabled }}>
+                                        <div class="text-muted small mt-1">
+                                            Tautan video pop-up saat tombol 'Video Profil' ditekan. Jika kosong dan switch ON, memakai video default. Jika switch OFF, tombol tidak akan ditampilkan di website.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
